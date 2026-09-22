@@ -30,15 +30,13 @@ export default function AdminPanel() {
 
   const fetchProjects = async () => {
     setLoading(true);
-    // Try fetching from Supabase
-    const { data, error } = await supabase.from("projects").select("*").order("id", { ascending: true });
-    
-    if (error) {
-      console.error("Error fetching projects:", error);
-      // Since DB might not be set up yet, fallback to empty array
-      setProjects([]);
-    } else {
+    try {
+      const { data, error } = await supabase.from("projects").select("*").order("id", { ascending: true });
+      if (error) throw error;
       setProjects(data || []);
+    } catch (err) {
+      console.log("Supabase is not configured yet. Showing empty state.");
+      setProjects([]);
     }
     setLoading(false);
   };

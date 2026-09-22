@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Server, Smartphone, Database, PenTool, LayoutTemplate } from "lucide-react";
+import { FaLinux } from "react-icons/fa";
 
 const SKILL_CATEGORIES = [
   {
@@ -52,10 +53,8 @@ export default function About() {
               </p>
               <p className="flex items-center gap-2">
                 Eager to learn new technologies and apply engineering practices across cloud, backend, and mobile environments. 
-                {/* Easter Egg: Linux Penguin SVG */}
-                <svg className="w-4 h-4 opacity-10 hover:opacity-100 transition-opacity cursor-help" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M12,2C12,2 8,5 8,11C8,15 9,19 6,21C6,21 11,22 12,22C13,22 18,21 18,21C15,19 16,15 16,11C16,5 12,2 12,2 M10,13A1,1 0 0,1 9,12A1,1 0 0,1 10,11A1,1 0 0,1 11,12A1,1 0 0,1 10,13 M14,13A1,1 0 0,1 13,12A1,1 0 0,1 14,11A1,1 0 0,1 15,12A1,1 0 0,1 14,13Z" />
-                </svg>
+                {/* Easter Egg: Linux Penguin */}
+                <FaLinux className="w-5 h-5 opacity-30 hover:opacity-100 hover:text-accent transition-all cursor-help" />
               </p>
             </div>
             

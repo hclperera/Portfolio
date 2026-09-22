@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Mail, FileText, Send } from "lucide-react";
+import { FaDocker } from "react-icons/fa";
 
 export default function Contact() {
   return (
@@ -59,11 +60,9 @@ export default function Contact() {
           Designed & Built by Chanduka Lakshan
         </p>
         
-        {/* Easter Egg: Docker Whale SVG */}
-        <div className="absolute bottom-4 right-4 opacity-5 hover:opacity-100 transition-opacity cursor-help">
-          <svg className="w-6 h-6 text-accent" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M22.5 14c-.65 0-1.2.2-1.67.6-.45.4-.73 1-.73 1.6 0 .5.2 1 .5 1.4.3.4.8.6 1.3.6.5 0 1-.2 1.4-.6.3-.4.5-.9.5-1.4 0-.6-.28-1.2-.73-1.6-.47-.4-1.02-.6-1.67-.6zM15 8h-3V5h3v3zm-4 0H8V5h3v3zm-4 0H4V5h3v3zm11.5 1c-1 0-1.8.2-2.5.7-.6.5-1 1.2-1 2V12h-8c-1.1 0-2 .9-2 2v2c0 1.1.9 2 2 2h8v.5c0 1.4 1.1 2.5 2.5 2.5 1.4 0 2.5-1.1 2.5-2.5V20c1.7 0 3-1.3 3-3v-4c0-2.8-2.2-5-5-5z" />
-          </svg>
+        {/* Easter Egg: Docker Whale */}
+        <div className="absolute bottom-4 right-4 opacity-20 hover:opacity-100 hover:text-accent transition-all cursor-help">
+          <FaDocker className="w-6 h-6 text-accent" />
         </div>
       </footer>
     </section>

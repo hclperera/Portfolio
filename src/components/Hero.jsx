@@ -50,13 +50,15 @@ export default function Hero() {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="relative"
         >
-          {/* Terminal Window Mockup */}
+          {/* Linux Terminal Window Mockup */}
           <div className="rounded-lg border border-border bg-[#050505] overflow-hidden shadow-2xl">
-            <div className="flex items-center gap-2 px-4 py-3 border-b border-border bg-[#0a0a0a]">
-              <div className="w-3 h-3 rounded-full bg-red-500"></div>
-              <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-              <div className="w-3 h-3 rounded-full bg-green-500"></div>
-              <span className="ml-2 text-xs font-mono text-foreground/50">guest@chanduka: ~</span>
+            <div className="flex justify-between items-center px-4 py-2 bg-[#2d2d2d] border-b border-[#1a1a1a]">
+              <span className="text-xs font-mono text-foreground/70">chanduka@linux: ~</span>
+              <div className="flex gap-2">
+                <div className="w-3 h-3 rounded-full bg-[#404040]"></div>
+                <div className="w-3 h-3 rounded-full bg-[#404040]"></div>
+                <div className="w-3 h-3 rounded-full bg-[#cc0000]"></div>
+              </div>
             </div>
             <div className="p-6 font-mono text-sm sm:text-base">
               <p className="text-accent mb-2">$ whoami</p>
