@@ -2,7 +2,10 @@
 
 import { motion } from "framer-motion";
 import { Mail, FileText, Send } from "lucide-react";
-import { FaDocker } from "react-icons/fa";
+import { FaDocker, FaLinux } from "react-icons/fa";
+import { VscAzure } from "react-icons/vsc";
+import { SiGit } from "react-icons/si";
+import DecryptedText from "./react-bits/DecryptedText";
 
 export default function Contact() {
   return (
@@ -55,14 +58,23 @@ export default function Contact() {
         </motion.div>
       </div>
 
-      <footer className="text-center pb-8 pt-8 border-t border-border/30 relative">
-        <p className="text-foreground/40 font-mono text-sm">
-          Designed & Built by Chanduka Lakshan
+      <footer className="text-center pb-8 pt-8 border-t border-border/30 relative overflow-hidden min-h-[100px]">
+        <p className="text-foreground/40 font-mono text-sm relative z-10">
+          <DecryptedText text="Designed & Built by Chanduka Lakshan" animateOn="view" maxIterations={20} speed={40} />
         </p>
         
-        {/* Easter Egg: Docker Whale */}
-        <div className="absolute bottom-4 right-4 opacity-20 hover:opacity-100 hover:text-accent transition-all cursor-help">
-          <FaDocker className="w-6 h-6 text-accent" />
+        {/* Easter Eggs: DevOps Edition */}
+        <div className="absolute top-4 left-4 md:left-12 opacity-10 hover:opacity-100 transition-all cursor-help hover:scale-125 duration-300">
+          <FaLinux className="w-6 h-6 md:w-8 md:h-8 hover:text-white" />
+        </div>
+        <div className="absolute bottom-4 right-4 md:right-12 opacity-10 hover:opacity-100 transition-all cursor-help hover:scale-125 duration-300">
+          <FaDocker className="w-6 h-6 md:w-8 md:h-8 hover:text-blue-500" />
+        </div>
+        <div className="absolute top-3 right-1/4 opacity-10 hover:opacity-100 transition-all cursor-help hover:scale-125 duration-300">
+          <VscAzure className="w-5 h-5 md:w-6 md:h-6 hover:text-blue-400" />
+        </div>
+        <div className="absolute bottom-3 left-1/4 opacity-10 hover:opacity-100 transition-all cursor-help hover:scale-125 duration-300">
+          <SiGit className="w-5 h-5 md:w-6 md:h-6 hover:text-orange-500" />
         </div>
       </footer>
     </section>

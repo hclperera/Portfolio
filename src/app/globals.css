@@ -21,8 +21,14 @@ body {
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
   --color-border: var(--border);
-  --font-sans: var(--font-inter);
-  --font-mono: var(--font-fira-code);
+  --font-sans: var(--font-space-grotesk);
+  --font-mono: var(--font-jetbrains-mono);
+  --font-heading: var(--font-determination);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading), sans-serif;
+  letter-spacing: 0.05em; /* Add a tiny bit of letter spacing for the pixel font */
 }
 
 /* Custom scrollbar for developer feel */

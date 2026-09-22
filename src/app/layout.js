@@ -1,13 +1,19 @@
-import { Inter, Fira_Code } from "next/font/google";
+import localFont from "next/font/local";
+import { Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({
-  variable: "--font-inter",
+const determination = localFont({
+  src: "./fonts/determination.ttf",
+  variable: "--font-determination",
+});
+
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-space-grotesk",
   subsets: ["latin"],
 });
 
-const firaCode = Fira_Code({
-  variable: "--font-fira-code",
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-jetbrains-mono",
   subsets: ["latin"],
 });
 
@@ -19,7 +25,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className="dark scroll-smooth">
-      <body className={`${inter.variable} ${firaCode.variable} antialiased font-sans`}>
+      <body className={`${spaceGrotesk.variable} ${jetbrainsMono.variable} ${determination.variable} antialiased font-sans`}>
         {children}
       </body>
     </html>

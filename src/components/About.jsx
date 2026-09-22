@@ -2,7 +2,25 @@
 
 import { motion } from "framer-motion";
 import { Server, Smartphone, Database, PenTool, LayoutTemplate } from "lucide-react";
-import { FaLinux } from "react-icons/fa";
+import { FaLinux, FaJava } from "react-icons/fa";
+import { VscAzure } from "react-icons/vsc";
+import { SiFlutter, SiAndroid, SiLinux, SiDocker, SiPython, SiNextdotjs, SiReact, SiTailwindcss, SiSupabase, SiGit } from "react-icons/si";
+import BorderGlow from "./react-bits/BorderGlow";
+import LogoLoop from "./react-bits/LogoLoop";
+
+const TECH_LOGOS = [
+  { node: <SiFlutter />, title: "Flutter" },
+  { node: <SiAndroid />, title: "Android Studio" },
+  { node: <FaJava />, title: "Java" },
+  { node: <SiPython />, title: "Python" },
+  { node: <SiNextdotjs />, title: "Next.js" },
+  { node: <SiReact />, title: "React" },
+  { node: <SiTailwindcss />, title: "Tailwind CSS" },
+  { node: <SiLinux />, title: "Linux" },
+  { node: <SiDocker />, title: "Docker" },
+  { node: <VscAzure />, title: "Azure" },
+  { node: <SiGit />, title: "Git" },
+];
 
 const SKILL_CATEGORIES = [
   {
@@ -52,20 +70,35 @@ export default function About() {
                 My expertise spans across mobile application development, backend systems, and containerization. I enjoy building seamless digital experiences and deploying them reliably using modern cloud practices.
               </p>
               <p className="flex items-center gap-2">
-                Eager to learn new technologies and apply engineering practices across cloud, backend, and mobile environments. 
-                {/* Easter Egg: Linux Penguin */}
-                <FaLinux className="w-5 h-5 opacity-30 hover:opacity-100 hover:text-accent transition-all cursor-help" />
+                Eager to learn new technologies and apply engineering practices across cloud, backend, and mobile environments.
               </p>
             </div>
             
-            <div className="relative">
-              {/* Image Placeholder (can be replaced with user image later) */}
-              <div className="aspect-square md:aspect-auto md:h-full rounded-lg bg-border/30 border border-border flex items-center justify-center relative overflow-hidden group">
-                <LayoutTemplate className="w-24 h-24 text-foreground/20 group-hover:scale-110 transition-transform duration-500" />
-                <div className="absolute inset-0 bg-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                <div className="absolute bottom-4 left-4 font-mono text-xs text-foreground/40">
-                  IMAGE_PLACEHOLDER.JPG
+            <div className="rounded-lg border border-border bg-[#050505] overflow-hidden shadow-2xl h-fit">
+              <div className="flex justify-between items-center px-4 py-2 bg-[#2d2d2d] border-b border-[#1a1a1a]">
+                <span className="text-xs font-mono text-foreground/70">chanduka@linux: ~</span>
+                <div className="flex gap-2">
+                  <div className="w-3 h-3 rounded-full bg-[#404040]"></div>
+                  <div className="w-3 h-3 rounded-full bg-[#404040]"></div>
+                  <div className="w-3 h-3 rounded-full bg-[#cc0000]"></div>
                 </div>
+              </div>
+              <div className="p-6 font-mono text-sm sm:text-base">
+                <p className="text-accent mb-2">$ whoami</p>
+                <p className="text-foreground/80 mb-4">chanduka_lakshan</p>
+                
+                <p className="text-accent mb-2">$ cat skills.json</p>
+                <div className="text-foreground/80 mb-4 pl-4 border-l-2 border-border">
+                  <p>&#123;</p>
+                  <p className="pl-4">"devops": ["Linux", "Docker", "Azure", "Git"],</p>
+                  <p className="pl-4">"mobile": ["Flutter", "Android Studio", "Java"],</p>
+                  <p className="pl-4">"backend": ["Python", "FastAPI", "SQL"]</p>
+                  <p>&#125;</p>
+                </div>
+
+                <p className="text-accent mb-2 flex items-center gap-2">
+                  $ cursor_ <span className="w-2 h-4 bg-accent animate-pulse inline-block"></span>
+                </p>
               </div>
             </div>
           </div>
@@ -80,20 +113,54 @@ export default function About() {
           <h3 className="text-2xl font-bold mb-8 font-mono">Technical Arsenal</h3>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {SKILL_CATEGORIES.map((category, index) => (
-              <div key={index} className="p-6 rounded-lg border border-border bg-background hover:border-accent/50 transition-colors group">
-                {category.icon}
-                <h4 className="text-lg font-semibold mb-4 text-foreground group-hover:text-accent transition-colors">{category.title}</h4>
-                <ul className="space-y-2 font-mono text-sm text-foreground/70">
-                  {category.skills.map((skill, i) => (
-                    <li key={i} className="flex items-center gap-2">
-                      <span className="w-1.5 h-1.5 rounded-full bg-accent"></span>
-                      {skill}
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              <BorderGlow
+                key={index}
+                edgeSensitivity={20}
+                glowColor="142 70 45"
+                backgroundColor="#09090b"
+                borderRadius={8}
+                glowRadius={15}
+                glowIntensity={0.8}
+                coneSpread={20}
+                animated={false}
+                colors={['#22c55e', '#16a34a', '#15803d']}
+                className="h-full"
+              >
+                <div className="p-6 flex flex-col h-full group z-10">
+                  {category.icon}
+                  <h4 className="text-lg font-semibold mb-4 text-foreground group-hover:text-accent transition-colors">{category.title}</h4>
+                  <ul className="space-y-2 font-mono text-sm text-foreground/70">
+                    {category.skills.map((skill, i) => (
+                      <li key={i} className="flex items-center gap-2">
+                        <span className="w-1.5 h-1.5 rounded-full bg-accent"></span>
+                        {skill}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </BorderGlow>
             ))}
           </div>
+        </motion.div>
+
+        <motion.div 
+          className="mt-20 overflow-hidden"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+        >
+          <LogoLoop
+            logos={TECH_LOGOS}
+            speed={120}
+            direction="left"
+            logoHeight={48}
+            gap={40}
+            hoverSpeed={0}
+            scaleOnHover
+            fadeOut
+            fadeOutColor="#09090b"
+          />
         </motion.div>
       </div>
     </section>
