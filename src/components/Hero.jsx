@@ -64,29 +64,30 @@ export default function Hero() {
       onMouseMove={shouldReduceMotion ? undefined : handleMouseMove}
       style={{ perspective: "1500px" }}
     >
-      {/* Background telemetry text */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden z-0 flex flex-col justify-between p-6 md:p-12 opacity-30 font-mono text-xs text-accent select-none">
-        <div className="flex justify-between w-full">
-          <div className="flex flex-col gap-2">
-            <span>SYS_INIT: OK</span>
-            <span className="transition-all duration-1000">MEM_ALLOC: {liveStats.mem}MB</span>
-            <span className="transition-all duration-1000">NET_LATENCY: {liveStats.latency}ms</span>
-          </div>
-          <div className="flex flex-col gap-2 text-right">
-            <span>GEO: 6.9271° N, 79.8612° E</span>
-            <span>CLUSTER: ASIA-SOUTH-1</span>
-          </div>
-        </div>
-        <div className="flex justify-between w-full items-end">
-          <div className="flex flex-col gap-2">
-            <span className="transition-all duration-1000">UPTIME: {liveStats.uptime}%</span>
-            <span>BUILD: v2.4.1</span>
-          </div>
-          <div className="flex flex-col gap-2 text-right">
-            <span>SECURE_CONN: TRUE</span>
-            <span className="transition-all duration-1000">THREAD_CNT: {liveStats.threads}</span>
-          </div>
-        </div>
+      {/* Background telemetry text — positioned to avoid navbar, content, and ticker */}
+      {/* TOP-LEFT corner: stays below navbar (pt-20 = 80px) and hugs left edge */}
+      <div className="absolute top-0 left-0 pointer-events-none z-0 flex flex-col gap-2 pt-20 pl-4 md:pl-8 opacity-30 font-mono text-xs text-accent select-none">
+        <span>SYS_INIT: OK</span>
+        <span className="transition-all duration-1000">MEM_ALLOC: {liveStats.mem}MB</span>
+        <span className="transition-all duration-1000">NET_LATENCY: {liveStats.latency}ms</span>
+      </div>
+
+      {/* TOP-RIGHT corner: stays below navbar, hugs right edge */}
+      <div className="absolute top-0 right-0 pointer-events-none z-0 flex flex-col gap-2 items-end pt-20 pr-4 md:pr-8 opacity-30 font-mono text-xs text-accent select-none">
+        <span>GEO: 6.9271° N, 79.8612° E</span>
+        <span>CLUSTER: ASIA-SOUTH-1</span>
+      </div>
+
+      {/* BOTTOM-LEFT corner: stays above the ticker strip (pb-4) */}
+      <div className="absolute bottom-0 left-0 pointer-events-none z-0 flex flex-col gap-2 pb-4 pl-4 md:pl-8 opacity-30 font-mono text-xs text-accent select-none">
+        <span className="transition-all duration-1000">UPTIME: {liveStats.uptime}%</span>
+        <span>BUILD: v2.4.1</span>
+      </div>
+
+      {/* BOTTOM-RIGHT corner: stays above the ticker strip */}
+      <div className="absolute bottom-0 right-0 pointer-events-none z-0 flex flex-col gap-2 items-end pb-4 pr-4 md:pr-8 opacity-30 font-mono text-xs text-accent select-none">
+        <span>SECURE_CONN: TRUE</span>
+        <span className="transition-all duration-1000">THREAD_CNT: {liveStats.threads}</span>
       </div>
       
       {/* Grid Pattern Overlay */}
