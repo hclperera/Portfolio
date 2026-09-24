@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Award, Calendar, ExternalLink } from "lucide-react";
 import { supabase } from "@/lib/supabase";
+import { BorderBeam } from "@/components/magicui/border-beam";
 
 const CERTIFICATIONS = [
   {
@@ -51,8 +52,9 @@ export default function Certifications() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="group rounded-lg border border-border bg-background hover:bg-border/20 transition-all overflow-hidden flex flex-col md:flex-row items-stretch"
+                className="relative group rounded-lg border border-border bg-background hover:bg-border/10 transition-all overflow-hidden flex flex-col md:flex-row items-stretch"
               >
+                <BorderBeam duration={8} size={100} color="#fe8019" className="opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 {cert.image_url && (
                   <div className="w-full md:w-48 h-48 md:h-auto shrink-0 border-b md:border-b-0 md:border-r border-border bg-[#0a0a0a]">
                     <img src={cert.image_url} alt={cert.title} className="w-full h-full object-cover" />
