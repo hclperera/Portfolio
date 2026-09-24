@@ -122,9 +122,9 @@ export default function Hero() {
         </motion.div>
 
         {/* Right Side: The Cloud Orbit */}
-        <div className="order-1 lg:order-2 relative aspect-square flex items-center justify-center w-full min-h-[400px] lg:min-h-[600px] z-10 pointer-events-none">
+        <div className="order-1 lg:order-2 relative aspect-square flex items-center justify-center w-full min-h-[300px] sm:min-h-[400px] lg:min-h-[600px] z-10 pointer-events-none">
           <motion.div 
-            className="absolute w-full h-full flex items-center justify-center"
+            className="absolute w-full h-full flex items-center justify-center scale-[0.55] sm:scale-75 md:scale-90 lg:scale-100"
             style={{ transformStyle: "preserve-3d" }}
             animate={{
               rotateX: shouldReduceMotion ? 0 : mousePos.y * 30,
