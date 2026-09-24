@@ -6,7 +6,8 @@ import { Terminal, Code, Cpu } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 import DecryptedText from "./react-bits/DecryptedText";
 import { FaDocker, FaLinux, FaGitAlt } from "react-icons/fa";
-import { SiMicrosoftazure, SiFlutter, SiNextdotjs } from "react-icons/si";
+import { SiFlutter, SiNextdotjs } from "react-icons/si";
+import { VscAzure } from "react-icons/vsc";
 
 export default function Hero() {
   const [profilePic, setProfilePic] = useState("/profile.png");
@@ -30,7 +31,7 @@ export default function Hero() {
     { icon: <FaDocker size={24} className="text-blue-500" />, radius: 140, angle: 0, speed: 20 },
     { icon: <FaLinux size={24} className="text-white" />, radius: 140, angle: 180, speed: 20 },
     
-    { icon: <SiMicrosoftazure size={28} className="text-blue-400" />, radius: 210, angle: 90, speed: 30 },
+    { icon: <VscAzure size={28} className="text-blue-400" />, radius: 210, angle: 90, speed: 30 },
     { icon: <SiFlutter size={28} className="text-cyan-400" />, radius: 210, angle: 270, speed: 30 },
     
     { icon: <FaGitAlt size={22} className="text-orange-500" />, radius: 280, angle: 45, speed: 45 },
