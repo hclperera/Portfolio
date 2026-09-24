@@ -20,11 +20,12 @@ const jetbrainsMono = JetBrains_Mono({
   display: "swap",
 });
 
-const SITE_URL = "https://chanduka.dev";
+const SITE_URL = "https://chanduka.me";
 const AUTHOR = "Chanduka Lakshan";
+const FULL_NAME = "H.C.L. Perera";
 const TITLE = "Chanduka Lakshan | DevOps & Mobile Engineer";
 const DESCRIPTION =
-  "Portfolio of Chanduka Lakshan — an IT undergraduate specializing in DevOps, cloud infrastructure (Azure, Docker, Linux), and mobile application development (Flutter, Android). Based in Colombo, Sri Lanka.";
+  "Portfolio of H.C.L. Perera (Chanduka Lakshan) — an IT undergraduate at Rajarata University of Sri Lanka (RUSL) specializing in DevOps, cloud infrastructure (Azure, Docker, Linux), and mobile application development (Flutter, Android). Based in Colombo, Sri Lanka.";
 const KEYWORDS = [
   "Chanduka Lakshan",
   "DevOps Engineer",
@@ -49,9 +50,29 @@ export const metadata = {
     template: `%s | ${AUTHOR}`,
   },
   description: DESCRIPTION,
-  keywords: KEYWORDS,
-  authors: [{ name: AUTHOR, url: SITE_URL }],
-  creator: AUTHOR,
+  keywords: [
+    "Chanduka Lakshan",
+    "H.C.L. Perera",
+    "HCL Perera",
+    "hclperera",
+    "DevOps Engineer",
+    "Mobile Developer",
+    "Flutter Developer",
+    "Android Developer",
+    "Cloud Engineer",
+    "Azure",
+    "Docker",
+    "Linux",
+    "Next.js",
+    "Sri Lanka Developer",
+    "RUSL",
+    "Rajarata University",
+    "Portfolio",
+    "Software Engineer",
+    "IT Undergraduate",
+  ],
+  authors: [{ name: FULL_NAME, url: SITE_URL }],
+  creator: FULL_NAME,
   publisher: AUTHOR,
 
   // Canonical URL
@@ -120,7 +141,8 @@ export const metadata = {
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
-  name: AUTHOR,
+  name: FULL_NAME,
+  alternateName: AUTHOR,
   url: SITE_URL,
   image: `${SITE_URL}/profile.png`,
   sameAs: [
@@ -134,7 +156,7 @@ const jsonLd = {
   },
   alumniOf: {
     "@type": "CollegeOrUniversity",
-    name: "Sri Lanka Institute of Information Technology (SLIIT)",
+    name: "Rajarata University of Sri Lanka (RUSL)",
   },
   knowsAbout: [
     "DevOps",
