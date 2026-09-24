@@ -235,7 +235,7 @@ export default function AdminPanel() {
                                 </button>
                               </div>
                             ))}
-                            <button onClick={() => { const newP = [...projects]; if(!newP[index].github_links) newP[index].github_links = []; newP[index].github_links.push({label: "", url: ""}); setProjects(newP); }} className="text-xs font-mono text-accent hover:underline flex items-center gap-1">
+                            <button onClick={() => { const newP = [...projects]; if (!newP[index].github_links) newP[index].github_links = []; if (newP[index].github_links.length === 0 && newP[index].github_link) { newP[index].github_links.push({ label: "", url: newP[index].github_link }); newP[index].github_link = ""; } else { newP[index].github_links.push({ label: "", url: "" }); } setProjects(newP); }} className="text-xs font-mono text-accent hover:underline flex items-center gap-1">
                               <Plus className="w-3 h-3" /> Add GitHub Link
                             </button>
                           </div>
