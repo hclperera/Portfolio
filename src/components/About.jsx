@@ -6,7 +6,7 @@ import { Server, Smartphone, Database, PenTool, LayoutTemplate } from "lucide-re
 import { FaLinux, FaJava } from "react-icons/fa";
 import { VscAzure } from "react-icons/vsc";
 import { SiFlutter, SiAndroid, SiLinux, SiDocker, SiPython, SiNextdotjs, SiReact, SiTailwindcss, SiSupabase, SiGit } from "react-icons/si";
-import BorderGlow from "./react-bits/BorderGlow";
+import { BorderBeam } from "@/components/magicui/border-beam";
 import LogoLoop from "./react-bits/LogoLoop";
 import { supabase } from "@/lib/supabase";
 
@@ -144,20 +144,12 @@ export default function About() {
           <h3 className="text-2xl font-bold mb-8 font-mono">Technical Arsenal</h3>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {skillCategories.map((category, index) => (
-              <BorderGlow
+              <div
                 key={index}
-                edgeSensitivity={20}
-                glowColor="142 70 45"
-                backgroundColor="#09090b"
-                borderRadius={8}
-                glowRadius={15}
-                glowIntensity={0.8}
-                coneSpread={20}
-                animated={false}
-                colors={['#22c55e', '#16a34a', '#15803d']}
-                className="h-full"
+                className="relative bg-[#09090b] rounded-lg overflow-hidden flex flex-col h-full border border-border group"
               >
-                <div className="p-6 flex flex-col h-full group z-10">
+                <BorderBeam duration={8} size={100} color="#fe8019" className="opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="p-6 flex flex-col h-full group z-10 relative">
                   {category.icon}
                   <h4 className="text-lg font-semibold mb-4 text-foreground group-hover:text-accent transition-colors">{category.title}</h4>
                   <ul className="space-y-2 font-mono text-sm text-foreground/70">
@@ -169,7 +161,7 @@ export default function About() {
                     ))}
                   </ul>
                 </div>
-              </BorderGlow>
+              </div>
             ))}
           </div>
         </motion.div>
