@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { Terminal, Code, Cpu } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 import DecryptedText from "./react-bits/DecryptedText";
@@ -12,6 +12,7 @@ import { VscAzure } from "react-icons/vsc";
 export default function Hero() {
   const [profilePic, setProfilePic] = useState("/profile.png");
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const shouldReduceMotion = useReducedMotion();
 
   useEffect(() => {
     supabase.from("profile").select("profile_picture_url").eq("id", 1).single().then(({data}) => {
@@ -42,7 +43,7 @@ export default function Hero() {
     <section 
       id="home" 
       className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20 pb-16 bg-[#020202]"
-      onMouseMove={handleMouseMove}
+      onMouseMove={shouldReduceMotion ? undefined : handleMouseMove}
       style={{ perspective: "1500px" }}
     >
       <div className="max-w-7xl mx-auto px-4 w-full grid lg:grid-cols-2 gap-12 items-center relative z-10">
@@ -98,8 +99,8 @@ export default function Hero() {
             className="absolute w-full h-full flex items-center justify-center"
             style={{ transformStyle: "preserve-3d" }}
             animate={{
-              rotateX: mousePos.y * 30,
-              rotateY: mousePos.x * 30,
+              rotateX: shouldReduceMotion ? 0 : mousePos.y * 30,
+              rotateY: shouldReduceMotion ? 0 : mousePos.x * 30,
             }}
             transition={{ type: "spring", stiffness: 40, damping: 20 }}
           >
@@ -119,9 +120,9 @@ export default function Hero() {
                 <motion.div
                   key={i}
                   className="absolute flex items-center justify-center"
-                  style={{ width: tech.radius * 2, height: tech.radius * 2, transformStyle: "preserve-3d" }}
-                  animate={{ rotateZ: [tech.angle, tech.angle + 360] }}
-                  transition={{ duration: tech.speed, repeat: Infinity, ease: "linear" }}
+                  style={{ width: tech.radius * 2, height: tech.radius * 2, transformStyle: "preserve-3d", transform: `rotateZ(${tech.angle}deg)` }}
+                  animate={shouldReduceMotion ? undefined : { rotateZ: [tech.angle, tech.angle + 360] }}
+                  transition={shouldReduceMotion ? undefined : { duration: tech.speed, repeat: Infinity, ease: "linear" }}
                 >
                   <div 
                     className="absolute bg-[#050505] border border-accent/40 p-3 sm:p-4 rounded-full shadow-[0_0_25px_rgba(34,197,94,0.4)] backdrop-blur-md"
@@ -129,8 +130,9 @@ export default function Hero() {
                   >
                     {/* Counter-rotate Z so the icon remains upright against the orbit */}
                     <motion.div
-                      animate={{ rotateZ: [-(tech.angle), -(tech.angle + 360)] }}
-                      transition={{ duration: tech.speed, repeat: Infinity, ease: "linear" }}
+                      animate={shouldReduceMotion ? undefined : { rotateZ: [-(tech.angle), -(tech.angle + 360)] }}
+                      transition={shouldReduceMotion ? undefined : { duration: tech.speed, repeat: Infinity, ease: "linear" }}
+                      style={shouldReduceMotion ? { transform: `rotateZ(${-tech.angle}deg)` } : undefined}
                       className="flex items-center justify-center drop-shadow-[0_0_10px_rgba(255,255,255,0.2)]"
                     >
                       {tech.icon}
@@ -142,8 +144,8 @@ export default function Hero() {
 
             {/* Center Profile Picture (The "Core") */}
             <div className="absolute z-50 pointer-events-auto" style={{ transform: "translateZ(30px)" }}>
-              <div className="relative w-48 h-48 sm:w-56 sm:h-56 rounded-full p-2 bg-gradient-to-tr from-accent/80 via-background to-accent/80 animate-[spin_15s_linear_infinite] shadow-[0_0_60px_rgba(34,197,94,0.5)]">
-                <div className="w-full h-full rounded-full overflow-hidden animate-[spin_15s_linear_infinite_reverse] border-4 border-background bg-background relative group">
+              <div className={`relative w-48 h-48 sm:w-56 sm:h-56 rounded-full p-2 bg-gradient-to-tr from-accent/80 via-background to-accent/80 ${shouldReduceMotion ? "" : "animate-[spin_15s_linear_infinite]"} shadow-[0_0_60px_rgba(34,197,94,0.5)]`}>
+                <div className={`w-full h-full rounded-full overflow-hidden ${shouldReduceMotion ? "" : "animate-[spin_15s_linear_infinite_reverse]"} border-4 border-background bg-background relative group`}>
                   <img 
                     src={profilePic} 
                     alt="Chanduka Lakshan" 
