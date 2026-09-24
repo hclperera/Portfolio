@@ -1,11 +1,23 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Terminal, Code, Cpu } from "lucide-react";
+import { supabase } from "@/lib/supabase";
 import DecryptedText from "./react-bits/DecryptedText";
 import FoldText from "./react-bits/FoldText";
 
 export default function Hero() {
+  const [profilePic, setProfilePic] = useState("/profile.png");
+  
+  useEffect(() => {
+    supabase.from("profile").select("profile_picture_url").eq("id", 1).single().then(({data}) => {
+      if (data?.profile_picture_url) {
+        setProfilePic(data.profile_picture_url);
+      }
+    });
+  }, []);
+
   return (
     <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20 pb-16">
       <div className="max-w-6xl mx-auto px-4 w-full grid md:grid-cols-2 gap-12 items-center relative z-10">
@@ -77,8 +89,11 @@ export default function Hero() {
           <div className="relative aspect-square md:aspect-auto md:h-[450px] lg:h-[550px] w-full flex items-end justify-center">
             <div className="w-full h-full flex items-end justify-center relative overflow-hidden group mask-image-bottom-fade">
               <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent z-10 pointer-events-none"></div>
-              <img src="/profile.png" alt="Chanduka Lakshan" className="w-full h-full object-contain object-bottom group-hover:scale-105 transition-transform duration-500 grayscale hover:grayscale-0 relative z-0" />
-              <div className="absolute inset-0 bg-accent/10 opacity-20 group-hover:opacity-0 transition-opacity duration-500 pointer-events-none mix-blend-overlay z-10"></div>
+              <img 
+                src={profilePic} 
+                alt="Chanduka Lakshan" 
+                className="w-full h-full object-contain object-bottom transition-all duration-500 relative z-0 hover:drop-shadow-[0_0_30px_rgba(34,197,94,0.5)] group-hover:scale-105" 
+              />
             </div>
           </div>
         </motion.div>

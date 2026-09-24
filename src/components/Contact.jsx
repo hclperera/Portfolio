@@ -2,12 +2,24 @@
 
 import { motion } from "framer-motion";
 import { Mail, FileText, Send } from "lucide-react";
-import { FaDocker, FaLinux } from "react-icons/fa";
+import { FaDocker, FaLinux, FaJava } from "react-icons/fa";
 import { VscAzure } from "react-icons/vsc";
-import { SiGit } from "react-icons/si";
+import { SiGit, SiFlutter, SiPython, SiNextdotjs } from "react-icons/si";
 import DecryptedText from "./react-bits/DecryptedText";
+import { supabase } from "@/lib/supabase";
+import { useState, useEffect } from "react";
 
 export default function Contact() {
+  const [cvUrl, setCvUrl] = useState("/Chanduka_Lakshan.pdf");
+
+  useEffect(() => {
+    supabase.from("profile").select("cv_url").eq("id", 1).single().then(({data}) => {
+      if (data?.cv_url) {
+        setCvUrl(data.cv_url);
+      }
+    });
+  }, []);
+
   return (
     <section id="contact" className="py-24 relative bg-[#050505]">
       <div className="max-w-4xl mx-auto px-4 text-center">
@@ -35,7 +47,7 @@ export default function Contact() {
             </a>
             
             <a
-              href="/Chanduka_Lakshan.pdf"
+              href={cvUrl}
               target="_blank"
               className="px-8 py-4 border border-border hover:border-accent text-foreground hover:text-accent font-bold rounded-sm transition-colors flex items-center gap-3 w-full sm:w-auto justify-center"
             >
@@ -75,6 +87,18 @@ export default function Contact() {
         </div>
         <div className="absolute bottom-3 left-1/4 opacity-10 hover:opacity-100 transition-all cursor-help hover:scale-125 duration-300">
           <SiGit className="w-5 h-5 md:w-6 md:h-6 hover:text-orange-500" />
+        </div>
+        <div className="absolute top-1/2 left-1/3 opacity-10 hover:opacity-100 transition-all cursor-help hover:scale-125 duration-300">
+          <SiFlutter className="w-5 h-5 md:w-6 md:h-6 hover:text-cyan-400" />
+        </div>
+        <div className="absolute top-1/3 right-1/3 opacity-10 hover:opacity-100 transition-all cursor-help hover:scale-125 duration-300">
+          <SiPython className="w-5 h-5 md:w-6 md:h-6 hover:text-yellow-400" />
+        </div>
+        <div className="absolute bottom-1/4 left-1/2 opacity-10 hover:opacity-100 transition-all cursor-help hover:scale-125 duration-300">
+          <FaJava className="w-5 h-5 md:w-6 md:h-6 hover:text-red-500" />
+        </div>
+        <div className="absolute top-2/3 right-1/2 opacity-10 hover:opacity-100 transition-all cursor-help hover:scale-125 duration-300">
+          <SiNextdotjs className="w-5 h-5 md:w-6 md:h-6 hover:text-white" />
         </div>
       </footer>
     </section>

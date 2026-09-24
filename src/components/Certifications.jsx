@@ -1,7 +1,9 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Award, Calendar } from "lucide-react";
+import { Award, Calendar, ExternalLink } from "lucide-react";
+import { supabase } from "@/lib/supabase";
 
 const CERTIFICATIONS = [
   {
@@ -17,6 +19,16 @@ const CERTIFICATIONS = [
 ];
 
 export default function Certifications() {
+  const [certificationsList, setCertificationsList] = useState(CERTIFICATIONS);
+
+  useEffect(() => {
+    supabase.from("certifications").select("*").order("id", { ascending: true }).then(({data}) => {
+      if (data && data.length > 0) {
+        setCertificationsList(data);
+      }
+    });
+  }, []);
+
   return (
     <section id="certifications" className="py-24 relative border-t border-border/50">
       <div className="max-w-4xl mx-auto px-4">
@@ -32,28 +44,40 @@ export default function Certifications() {
           <div className="w-20 h-1 bg-accent mb-12"></div>
 
           <div className="space-y-6">
-            {CERTIFICATIONS.map((cert, index) => (
+            {certificationsList.map((cert, index) => (
               <motion.div
-                key={index}
+                key={cert.id || index}
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="group p-6 rounded-lg border border-border bg-background hover:bg-border/20 transition-all flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4"
+                className="group rounded-lg border border-border bg-background hover:bg-border/20 transition-all overflow-hidden flex flex-col md:flex-row items-stretch"
               >
-                <div className="flex items-center gap-4">
-                  <div className="p-3 bg-accent/10 text-accent rounded-full group-hover:scale-110 transition-transform">
-                    <Award className="w-6 h-6" />
+                {cert.image_url && (
+                  <div className="w-full md:w-48 h-48 md:h-auto shrink-0 border-b md:border-b-0 md:border-r border-border bg-[#0a0a0a]">
+                    <img src={cert.image_url} alt={cert.title} className="w-full h-full object-cover" />
                   </div>
-                  <div>
-                    <h3 className="text-xl font-bold text-foreground group-hover:text-accent transition-colors">{cert.title}</h3>
-                    <p className="text-foreground/60 font-mono text-sm mt-1">{cert.issuer}</p>
+                )}
+                <div className="p-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 w-full">
+                  <div className="flex items-center gap-4">
+                    <div className="p-3 bg-accent/10 text-accent rounded-full group-hover:scale-110 transition-transform shrink-0">
+                      <Award className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-bold text-foreground group-hover:text-accent transition-colors">{cert.title}</h3>
+                      <p className="text-foreground/60 font-mono text-sm mt-1">{cert.issuer}</p>
+                      {cert.credential_url && (
+                        <a href={cert.credential_url} target="_blank" rel="noreferrer" className="text-accent hover:underline text-xs mt-2 inline-flex items-center gap-1">
+                          View Credential <ExternalLink className="w-3 h-3" />
+                        </a>
+                      )}
+                    </div>
                   </div>
-                </div>
-                
-                <div className="flex items-center gap-2 text-foreground/50 font-mono text-sm bg-background border border-border px-3 py-1 rounded-full">
-                  <Calendar className="w-4 h-4" />
-                  {cert.date}
+                  
+                  <div className="flex items-center gap-2 text-foreground/50 font-mono text-sm bg-background border border-border px-3 py-1 rounded-full shrink-0">
+                    <Calendar className="w-4 h-4" />
+                    {cert.date}
+                  </div>
                 </div>
               </motion.div>
             ))}

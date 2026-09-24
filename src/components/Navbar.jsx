@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { Menu, X, Terminal } from "lucide-react";
+import { supabase } from "@/lib/supabase";
 
 const NAV_LINKS = [
   { name: "Home", href: "#home" },
@@ -14,12 +15,21 @@ const NAV_LINKS = [
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [cvUrl, setCvUrl] = useState("/Chanduka_Lakshan.pdf");
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
     };
     window.addEventListener("scroll", handleScroll);
+    
+    // Fetch CV URL from DB
+    supabase.from("profile").select("cv_url").eq("id", 1).single().then(({data}) => {
+      if (data?.cv_url) {
+        setCvUrl(data.cv_url);
+      }
+    });
+
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -49,7 +59,7 @@ export default function Navbar() {
             </a>
           ))}
           <a
-            href="/Chanduka_Lakshan.pdf"
+            href={cvUrl}
             target="_blank"
             className="px-4 py-2 border border-accent text-accent rounded-sm hover:bg-accent hover:text-accent-foreground transition-all flex items-center gap-2"
           >
@@ -81,7 +91,7 @@ export default function Navbar() {
               </a>
             ))}
             <a
-              href="/Chanduka_Lakshan.pdf"
+              href={cvUrl}
               target="_blank"
               className="w-full text-center px-4 py-2 border border-accent text-accent rounded-sm hover:bg-accent hover:text-accent-foreground transition-all"
             >

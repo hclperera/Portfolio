@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Server, Smartphone, Database, PenTool, LayoutTemplate } from "lucide-react";
 import { FaLinux, FaJava } from "react-icons/fa";
@@ -7,6 +8,7 @@ import { VscAzure } from "react-icons/vsc";
 import { SiFlutter, SiAndroid, SiLinux, SiDocker, SiPython, SiNextdotjs, SiReact, SiTailwindcss, SiSupabase, SiGit } from "react-icons/si";
 import BorderGlow from "./react-bits/BorderGlow";
 import LogoLoop from "./react-bits/LogoLoop";
+import { supabase } from "@/lib/supabase";
 
 const TECH_LOGOS = [
   { node: <SiFlutter />, title: "Flutter" },
@@ -45,7 +47,40 @@ const SKILL_CATEGORIES = [
   },
 ];
 
+const ICONS_MAP = {
+  Server: <Server className="w-6 h-6 mb-4 text-accent" />,
+  Smartphone: <Smartphone className="w-6 h-6 mb-4 text-accent" />,
+  Database: <Database className="w-6 h-6 mb-4 text-accent" />,
+  PenTool: <PenTool className="w-6 h-6 mb-4 text-accent" />,
+  LayoutTemplate: <LayoutTemplate className="w-6 h-6 mb-4 text-accent" />
+};
+
 export default function About() {
+  const [aboutTexts, setAboutTexts] = useState([
+    "I am an Information Technology undergraduate with a strong interest in DevOps, cloud infrastructure, automation, and reliable software delivery.",
+    "My expertise spans across mobile application development, backend systems, and containerization. I enjoy building seamless digital experiences and deploying them reliably using modern cloud practices.",
+    "Eager to learn new technologies and apply engineering practices across cloud, backend, and mobile environments."
+  ]);
+  const [skillCategories, setSkillCategories] = useState(SKILL_CATEGORIES);
+
+  useEffect(() => {
+    supabase.from("profile").select("about_texts").eq("id", 1).single().then(({data}) => {
+      if (data?.about_texts?.length > 0) {
+        setAboutTexts(data.about_texts);
+      }
+    });
+
+    supabase.from("skills").select("*").order("id", { ascending: true }).then(({data}) => {
+      if (data?.length > 0) {
+        setSkillCategories(data.map(d => ({
+          ...d,
+          skills: d.items || [],
+          icon: ICONS_MAP[d.icon_name] || <Server className="w-6 h-6 mb-4 text-accent" />
+        })));
+      }
+    });
+  }, []);
+
   return (
     <section id="about" className="py-24 relative border-t border-border/50">
       <div className="max-w-6xl mx-auto px-4">
@@ -63,15 +98,11 @@ export default function About() {
           
           <div className="grid md:grid-cols-2 gap-12">
             <div className="text-foreground/80 space-y-4 text-lg leading-relaxed">
-              <p>
-                I am an Information Technology undergraduate with a strong interest in DevOps, cloud infrastructure, automation, and reliable software delivery.
-              </p>
-              <p>
-                My expertise spans across mobile application development, backend systems, and containerization. I enjoy building seamless digital experiences and deploying them reliably using modern cloud practices.
-              </p>
-              <p className="flex items-center gap-2">
-                Eager to learn new technologies and apply engineering practices across cloud, backend, and mobile environments.
-              </p>
+              {aboutTexts.map((text, idx) => (
+                <p key={idx} className={idx === aboutTexts.length - 1 ? "flex items-center gap-2" : ""}>
+                  {text}
+                </p>
+              ))}
             </div>
             
             <div className="rounded-lg border border-border bg-[#050505] overflow-hidden shadow-2xl h-fit">
@@ -112,7 +143,7 @@ export default function About() {
         >
           <h3 className="text-2xl font-bold mb-8 font-mono">Technical Arsenal</h3>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {SKILL_CATEGORIES.map((category, index) => (
+            {skillCategories.map((category, index) => (
               <BorderGlow
                 key={index}
                 edgeSensitivity={20}

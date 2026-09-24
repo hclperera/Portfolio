@@ -1,8 +1,10 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { FolderGit2, ExternalLink } from "lucide-react";
 import BorderGlow from "./react-bits/BorderGlow";
+import { supabase } from "@/lib/supabase";
 
 // Mock data as fallback when DB is not connected
 const MOCK_PROJECTS = [
@@ -28,15 +30,25 @@ const MOCK_PROJECTS = [
   },
   {
     id: 3,
-    title: "Sinhala Braille Reader",
-    description: "AI-driven assistive mobile application for interpreting Sinhala interpoint Braille from captured images. Uses an image processing pipeline and object detection.",
-    tech_stack: ["Flutter", "Python", "FastAPI", "Azure", "OpenCV", "YOLOv8"],
-    github_link: "",
+    title: "Personal Organizer",
+    description: "A Python-based personal organizer and task management application to keep track of daily routines.",
+    tech_stack: ["Qt", "C++", "SQLite"],
+    github_link: "https://github.com/hclperera/Personal_Organizer",
     live_link: "",
   }
 ];
 
-export default function Projects({ projects = MOCK_PROJECTS }) {
+export default function Projects() {
+  const [projectsList, setProjectsList] = useState(MOCK_PROJECTS);
+
+  useEffect(() => {
+    supabase.from("projects").select("*").order("id", { ascending: true }).then(({data}) => {
+      if (data && data.length > 0) {
+        setProjectsList(data);
+      }
+    });
+  }, []);
+
   return (
     <section id="projects" className="py-24 relative bg-[#050505]">
       <div className="max-w-6xl mx-auto px-4">
@@ -52,7 +64,7 @@ export default function Projects({ projects = MOCK_PROJECTS }) {
           <div className="w-20 h-1 bg-accent mb-12"></div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {projects.map((project, index) => (
+            {projectsList.map((project, index) => (
               <motion.div
                 key={project.id}
                 initial={{ opacity: 0, y: 20 }}
@@ -71,8 +83,13 @@ export default function Projects({ projects = MOCK_PROJECTS }) {
                   coneSpread={20}
                   animated={false}
                   colors={['#22c55e', '#16a34a', '#15803d']}
-                  className="h-full"
+                  className="h-full flex flex-col overflow-hidden"
                 >
+                  {project.image_url && (
+                    <div className="w-full h-48 border-b border-border bg-[#0a0a0a] z-10 shrink-0">
+                      <img src={project.image_url} alt={project.title} className="w-full h-full object-cover" />
+                    </div>
+                  )}
                   <div className="p-6 flex flex-col h-full group z-10">
                 <div className="flex justify-between items-center mb-6">
                   <FolderGit2 className="w-10 h-10 text-accent" />
