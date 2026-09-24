@@ -54,12 +54,20 @@ export default function AdminPanel() {
   const handleSave = async (table, data) => {
     try {
       const payload = { ...data };
-      // If it's a newly created item with a Date.now() timestamp, remove the ID
-      // so Supabase can auto-generate the sequential ID (prevents int4 overflow)
+      let error = null;
+
       if (payload.id && payload.id > 1000000) {
+        // New item: remove temp ID and INSERT
         delete payload.id;
+        const res = await supabase.from(table).insert(payload);
+        error = res.error;
+      } else {
+        // Existing item: UPDATE (avoids 'cannot insert non-DEFAULT value' on identity columns)
+        const { id, ...updatePayload } = payload;
+        const res = await supabase.from(table).update(updatePayload).eq("id", id);
+        error = res.error;
       }
-      const { error } = await supabase.from(table).upsert(payload);
+
       if (error) throw error;
       alert("Saved successfully!");
       fetchAllData();
