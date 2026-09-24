@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { FolderGit2, ExternalLink } from "lucide-react";
-import BorderGlow from "./react-bits/BorderGlow";
+import { BorderBeam } from "@/components/magicui/border-beam";
 import { supabase } from "@/lib/supabase";
 
 // Mock data as fallback when DB is not connected
@@ -74,8 +74,9 @@ export default function Projects() {
                 className="hover:-translate-y-2 transition-transform duration-300 h-full"
               >
                 <div
-                  className="rotating-border-glow h-full flex flex-col overflow-hidden bg-[#09090b] rounded-lg"
+                  className="relative h-full flex flex-col overflow-hidden bg-[#09090b] rounded-lg border border-border group"
                 >
+                  <BorderBeam duration={8} size={100} color="#fe8019" className="opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   {project.image_url && (
                     <div className="w-full h-48 border-b border-border bg-[#0a0a0a] z-10 shrink-0">
                       <img src={project.image_url} alt={project.title} className="w-full h-full object-cover" />

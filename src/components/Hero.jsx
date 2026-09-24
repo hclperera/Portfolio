@@ -47,7 +47,7 @@ export default function Hero() {
       style={{ perspective: "1500px" }}
     >
       {/* Subtle Background Elements to Fill Space */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden z-0 flex flex-col justify-between p-6 md:p-12 opacity-[0.03] font-mono text-xs text-accent select-none">
+      <div className="absolute inset-0 pointer-events-none overflow-hidden z-0 flex flex-col justify-between p-6 md:p-12 opacity-30 font-mono text-xs text-accent select-none">
         <div className="flex justify-between w-full">
           <div className="flex flex-col gap-2">
             <span>SYS_INIT: OK</span>
@@ -72,7 +72,7 @@ export default function Hero() {
       </div>
       
       {/* Grid Pattern Overlay */}
-      <div className="absolute inset-0 z-0 opacity-20 pointer-events-none bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_60%_at_50%_50%,#000_70%,transparent_100%)]"></div>
+      <div className="absolute inset-0 z-0 opacity-40 pointer-events-none bg-[linear-gradient(to_right,#80808033_1px,transparent_1px),linear-gradient(to_bottom,#80808033_1px,transparent_1px)] bg-[size:32px_32px] [mask-image:radial-gradient(ellipse_60%_60%_at_50%_50%,#000_70%,transparent_100%)]"></div>
 
       <div className="max-w-7xl mx-auto px-4 w-full grid lg:grid-cols-2 gap-12 items-center relative z-10">
         
