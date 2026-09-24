@@ -117,9 +117,9 @@ export default function Contact() {
 
           {/* Bottom Bar */}
           <div className="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-border/20 gap-4">
-            <p className="text-foreground/40 font-mono text-xs">
-              © {new Date().getFullYear()} Chanduka Lakshan. Engineered with Precision.
-            </p>
+            <div className="text-foreground/40 font-mono text-xs cursor-default">
+              <DecryptedText text={`© ${new Date().getFullYear()} Chanduka Lakshan. Engineered with Precision.`} maxIterations={20} speed={40} />
+            </div>
             
             {/* Inline Easter Eggs */}
             <div className="flex items-center gap-4 text-foreground/20">

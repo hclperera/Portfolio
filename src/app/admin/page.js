@@ -111,6 +111,9 @@ export default function AdminPanel() {
       {/* Sidebar */}
       <div className="w-full md:w-64 shrink-0">
         <h1 className="text-2xl font-bold font-mono mb-8"><span className="text-accent">~/</span>admin</h1>
+        <a href="/" className="flex items-center gap-2 text-foreground/50 hover:text-accent font-mono text-sm mb-6 transition-colors">
+          <span className="text-xl">←</span> Back to Website
+        </a>
         <div className="flex flex-col gap-2">
           {TABS.map(tab => (
             <button
@@ -220,16 +223,31 @@ export default function AdminPanel() {
                         <label className="block text-xs font-mono text-foreground/50 mb-1">Description</label>
                         <textarea value={project.description} onChange={(e) => { const newP = [...projects]; newP[index].description = e.target.value; setProjects(newP); }} className="w-full bg-[#0a0a0a] border border-border p-2 rounded-sm text-foreground h-20 focus:border-accent focus:outline-none" />
                       </div>
-                      <div className="grid md:grid-cols-2 gap-4">
+                        <div className="md:col-span-2">
+                          <label className="block text-xs font-mono text-foreground/50 mb-1">GitHub Links (Multiple)</label>
+                          <div className="space-y-2">
+                            {(project.github_links || []).map((link, lIdx) => (
+                              <div key={lIdx} className="flex gap-2">
+                                <input type="text" placeholder="Label (e.g. Backend)" value={link.label} onChange={(e) => { const newP = [...projects]; newP[index].github_links[lIdx].label = e.target.value; setProjects(newP); }} className="w-1/3 bg-[#0a0a0a] border border-border p-2 rounded-sm text-foreground focus:border-accent focus:outline-none" />
+                                <input type="text" placeholder="URL" value={link.url} onChange={(e) => { const newP = [...projects]; newP[index].github_links[lIdx].url = e.target.value; setProjects(newP); }} className="w-full bg-[#0a0a0a] border border-border p-2 rounded-sm text-foreground focus:border-accent focus:outline-none" />
+                                <button onClick={() => { const newP = [...projects]; newP[index].github_links.splice(lIdx, 1); setProjects(newP); }} className="p-2 border border-red-500/50 text-red-500 rounded hover:bg-red-500/10 shrink-0">
+                                  <Trash2 className="w-4 h-4" />
+                                </button>
+                              </div>
+                            ))}
+                            <button onClick={() => { const newP = [...projects]; if(!newP[index].github_links) newP[index].github_links = []; newP[index].github_links.push({label: "", url: ""}); setProjects(newP); }} className="text-xs font-mono text-accent hover:underline flex items-center gap-1">
+                              <Plus className="w-3 h-3" /> Add GitHub Link
+                            </button>
+                          </div>
+                        </div>
                         <div>
-                          <label className="block text-xs font-mono text-foreground/50 mb-1">GitHub Link (Primary)</label>
+                          <label className="block text-xs font-mono text-foreground/50 mb-1">Single GitHub Link (Legacy)</label>
                           <input type="text" value={project.github_link || ''} onChange={(e) => { const newP = [...projects]; newP[index].github_link = e.target.value; setProjects(newP); }} className="w-full bg-[#0a0a0a] border border-border p-2 rounded-sm text-foreground focus:border-accent focus:outline-none" />
                         </div>
                         <div>
                           <label className="block text-xs font-mono text-foreground/50 mb-1">Live Link</label>
                           <input type="text" value={project.live_link || ''} onChange={(e) => { const newP = [...projects]; newP[index].live_link = e.target.value; setProjects(newP); }} className="w-full bg-[#0a0a0a] border border-border p-2 rounded-sm text-foreground focus:border-accent focus:outline-none" />
                         </div>
-                      </div>
                       <div>
                         <label className="block text-xs font-mono text-foreground/50 mb-1">Tech Stack (comma separated)</label>
                         <input type="text" value={project.tech_stack?.join(', ') || ''} onChange={(e) => { const newP = [...projects]; newP[index].tech_stack = e.target.value.split(',').map(s=>s.trim()).filter(Boolean); setProjects(newP); }} className="w-full bg-[#0a0a0a] border border-border p-2 rounded-sm text-foreground focus:border-accent focus:outline-none" />

@@ -31,7 +31,7 @@ const MOCK_PROJECTS = [
   {
     id: 3,
     title: "Personal Organizer",
-    description: "A Python-based personal organizer and task management application to keep track of daily routines.",
+    description: "A C++-based personal organizer and task management application to keep track of daily routines.",
     tech_stack: ["Qt", "C++", "SQLite"],
     github_link: "https://github.com/hclperera/Personal_Organizer",
     live_link: "",

@@ -28,7 +28,7 @@ export default function Hero() {
         >
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-border/50 border border-border text-sm font-mono text-accent mb-6">
             <Terminal className="w-4 h-4" />
-            <DecryptedText text='sys.status === "online"' animateOn="view" maxIterations={20} speed={40} />
+            <DecryptedText text='sys.status === "online"' maxIterations={20} speed={40} />
           </div>
           
           <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6 flex flex-col items-start gap-4 overflow-hidden">
