@@ -70,35 +70,70 @@ export default function Contact() {
         </motion.div>
       </div>
 
-      <footer className="text-center pb-8 pt-8 border-t border-border/30 relative overflow-hidden min-h-[100px]">
-        <p className="text-foreground/40 font-mono text-sm relative z-10">
-          <DecryptedText text="Designed & Built by Chanduka Lakshan" animateOn="view" maxIterations={20} speed={40} />
-        </p>
-        
-        {/* Easter Eggs: DevOps Edition */}
-        <div className="absolute top-4 left-4 md:left-12 opacity-10 hover:opacity-100 transition-all cursor-help hover:scale-125 duration-300">
-          <FaLinux className="w-6 h-6 md:w-8 md:h-8 hover:text-white" />
-        </div>
-        <div className="absolute bottom-4 right-4 md:right-12 opacity-10 hover:opacity-100 transition-all cursor-help hover:scale-125 duration-300">
-          <FaDocker className="w-6 h-6 md:w-8 md:h-8 hover:text-blue-500" />
-        </div>
-        <div className="absolute top-3 right-1/4 opacity-10 hover:opacity-100 transition-all cursor-help hover:scale-125 duration-300">
-          <VscAzure className="w-5 h-5 md:w-6 md:h-6 hover:text-blue-400" />
-        </div>
-        <div className="absolute bottom-3 left-1/4 opacity-10 hover:opacity-100 transition-all cursor-help hover:scale-125 duration-300">
-          <SiGit className="w-5 h-5 md:w-6 md:h-6 hover:text-orange-500" />
-        </div>
-        <div className="absolute top-1/2 left-1/3 opacity-10 hover:opacity-100 transition-all cursor-help hover:scale-125 duration-300">
-          <SiFlutter className="w-5 h-5 md:w-6 md:h-6 hover:text-cyan-400" />
-        </div>
-        <div className="absolute top-1/3 right-1/3 opacity-10 hover:opacity-100 transition-all cursor-help hover:scale-125 duration-300">
-          <SiPython className="w-5 h-5 md:w-6 md:h-6 hover:text-yellow-400" />
-        </div>
-        <div className="absolute bottom-1/4 left-1/2 opacity-10 hover:opacity-100 transition-all cursor-help hover:scale-125 duration-300">
-          <FaJava className="w-5 h-5 md:w-6 md:h-6 hover:text-red-500" />
-        </div>
-        <div className="absolute top-2/3 right-1/2 opacity-10 hover:opacity-100 transition-all cursor-help hover:scale-125 duration-300">
-          <SiNextdotjs className="w-5 h-5 md:w-6 md:h-6 hover:text-white" />
+      <footer className="border-t border-border/30 bg-[#020202] pt-16 pb-8 mt-24 text-left">
+        <div className="max-w-6xl mx-auto px-4 md:px-6">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-12 mb-16">
+            
+            {/* Column 1: Info */}
+            <div className="md:col-span-6 space-y-4">
+              <h3 className="text-xl md:text-2xl font-bold tracking-widest uppercase text-foreground">
+                Chanduka Lakshan
+              </h3>
+              <p className="text-accent font-mono text-sm">
+                B.Sc. IT Undergraduate
+              </p>
+              <p className="text-foreground/60 text-sm leading-relaxed max-w-md mt-4">
+                Focused on resilient cloud architectures, containerized microservices, and mobile application development. Open to engineering opportunities worldwide.
+              </p>
+              <div className="flex items-center gap-2 text-foreground/50 text-sm font-mono mt-6">
+                <span className="w-2 h-2 rounded-full bg-accent"></span>
+                Based in Colombo, Sri Lanka
+              </div>
+            </div>
+
+            {/* Column 2: Sitemap */}
+            <div className="md:col-span-3">
+              <h4 className="text-accent font-mono text-xs font-bold tracking-widest uppercase mb-6">Sitemap</h4>
+              <ul className="space-y-3 font-mono text-sm text-foreground/60">
+                <li><a href="#home" className="hover:text-accent transition-colors">// 01 Overview</a></li>
+                <li><a href="#about" className="hover:text-accent transition-colors">// 02 About Me</a></li>
+                <li><a href="#projects" className="hover:text-accent transition-colors">// 03 Technical Projects</a></li>
+                <li><a href="#certifications" className="hover:text-accent transition-colors">// 04 Qualifications</a></li>
+                <li><a href="#contact" className="hover:text-accent transition-colors">// 05 Contact & Inquiry</a></li>
+              </ul>
+            </div>
+
+            {/* Column 3: Network */}
+            <div className="md:col-span-3">
+              <h4 className="text-accent font-mono text-xs font-bold tracking-widest uppercase mb-6">Network</h4>
+              <ul className="space-y-3 font-mono text-sm text-foreground/60">
+                <li><a href="https://github.com/hclperera" target="_blank" rel="noreferrer" className="hover:text-accent transition-colors flex items-center justify-between">GitHub <span className="text-xs">↗</span></a></li>
+                <li><a href="https://linkedin.com/in/chanduka-lakshan" target="_blank" rel="noreferrer" className="hover:text-accent transition-colors flex items-center justify-between">LinkedIn <span className="text-xs">↗</span></a></li>
+                <li><a href="mailto:chandukalakshanbttdm@gmail.com" className="hover:text-accent transition-colors flex items-center justify-between">Email Terminal <span className="text-xs">↗</span></a></li>
+                <li className="pt-2 text-foreground/40">+94 7X XXX XXXX</li>
+              </ul>
+            </div>
+          </div>
+
+          {/* Bottom Bar */}
+          <div className="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-border/20 gap-4">
+            <p className="text-foreground/40 font-mono text-xs">
+              © {new Date().getFullYear()} Chanduka Lakshan. Engineered with Precision.
+            </p>
+            
+            {/* Inline Easter Eggs */}
+            <div className="flex items-center gap-4 text-foreground/20">
+              <span className="text-xs font-mono tracking-widest mr-2">TECH CORE:</span>
+              <FaLinux className="w-4 h-4 hover:text-white transition-colors cursor-help" title="Linux" />
+              <FaDocker className="w-4 h-4 hover:text-blue-500 transition-colors cursor-help" title="Docker" />
+              <VscAzure className="w-4 h-4 hover:text-blue-400 transition-colors cursor-help" title="Azure" />
+              <SiGit className="w-4 h-4 hover:text-orange-500 transition-colors cursor-help" title="Git" />
+              <SiFlutter className="w-4 h-4 hover:text-cyan-400 transition-colors cursor-help" title="Flutter" />
+              <SiPython className="w-4 h-4 hover:text-yellow-400 transition-colors cursor-help" title="Python" />
+              <FaJava className="w-4 h-4 hover:text-red-500 transition-colors cursor-help" title="Java" />
+              <SiNextdotjs className="w-4 h-4 hover:text-white transition-colors cursor-help" title="Next.js" />
+            </div>
+          </div>
         </div>
       </footer>
     </section>

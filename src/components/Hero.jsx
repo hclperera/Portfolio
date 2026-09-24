@@ -69,11 +69,25 @@ export default function Hero() {
           </p>
           
           <div className="flex flex-wrap gap-4 font-mono">
-            <a href="#projects" className="px-6 py-3 bg-accent text-accent-foreground font-semibold rounded-sm hover:bg-accent/90 transition-colors flex items-center gap-2">
+            <a 
+              href="#projects" 
+              onClick={(e) => {
+                e.preventDefault();
+                document.querySelector("#projects")?.scrollIntoView({ behavior: "smooth" });
+              }}
+              className="px-6 py-3 bg-accent text-accent-foreground font-semibold rounded-sm hover:bg-accent/90 transition-colors flex items-center gap-2 cursor-pointer"
+            >
               <Code className="w-4 h-4" />
               View Projects
             </a>
-            <a href="#contact" className="px-6 py-3 border border-border hover:border-accent text-foreground hover:text-accent rounded-sm transition-colors flex items-center gap-2">
+            <a 
+              href="#contact" 
+              onClick={(e) => {
+                e.preventDefault();
+                document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" });
+              }}
+              className="px-6 py-3 border border-border hover:border-accent text-foreground hover:text-accent rounded-sm transition-colors flex items-center gap-2 cursor-pointer"
+            >
               <Cpu className="w-4 h-4" />
               Contact Me
             </a>
