@@ -3,7 +3,7 @@
 :root {
   --background: #09090b;
   --foreground: #fafafa;
-  --accent: #22c55e; 
+  --accent: #fe8019; /* Gruvbox Orange */
   --accent-foreground: #09090b;
   --border: #27272a;
 }
@@ -44,4 +44,41 @@ h1, h2, h3, h4, h5, h6 {
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #3f3f46;
+}
+
+@property --angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes rotate-border {
+  to {
+    --angle: 360deg;
+  }
+}
+
+.rotating-border-glow {
+  position: relative;
+  z-index: 1;
+}
+
+.rotating-border-glow::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  z-index: -1;
+  border-radius: inherit;
+  padding: 2px;
+  background: conic-gradient(from var(--angle), transparent 60%, var(--accent) 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: rotate-border 3s linear infinite;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.rotating-border-glow:hover::before {
+  opacity: 1;
 }
