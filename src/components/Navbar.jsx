@@ -15,11 +15,28 @@ const NAV_LINKS = [
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState("home");
   const [cvUrl, setCvUrl] = useState("/Chanduka_Lakshan.pdf");
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
+      
+      const sections = NAV_LINKS.map(link => link.href.substring(1));
+      let currentSection = "";
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          if (rect.top <= 150 && rect.bottom >= 150) {
+            currentSection = section;
+            break;
+          }
+        }
+      }
+      if (currentSection) {
+        setActiveSection(currentSection);
+      }
     };
     window.addEventListener("scroll", handleScroll);
     
@@ -49,15 +66,19 @@ export default function Navbar() {
 
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-8 font-mono text-sm">
-          {NAV_LINKS.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              className="text-foreground/70 hover:text-accent transition-colors"
-            >
-              {link.name}
-            </a>
-          ))}
+          {NAV_LINKS.map((link) => {
+            const isActive = activeSection === link.href.substring(1);
+            return (
+              <a
+                key={link.name}
+                href={link.href}
+                className={`transition-colors relative ${isActive ? "text-accent font-bold" : "text-foreground/70 hover:text-accent"}`}
+              >
+                {isActive && <span className="absolute -left-3 text-accent">&gt;</span>}
+                {link.name}
+              </a>
+            );
+          })}
           <a
             href={cvUrl}
             target="_blank"
@@ -80,16 +101,19 @@ export default function Navbar() {
       {isOpen && (
         <div className="md:hidden absolute top-full left-0 w-full bg-background border-b border-border shadow-lg font-mono">
           <div className="flex flex-col p-4 gap-4">
-            {NAV_LINKS.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                onClick={() => setIsOpen(false)}
-                className="text-foreground/70 hover:text-accent transition-colors"
-              >
-                {link.name}
-              </a>
-            ))}
+            {NAV_LINKS.map((link) => {
+              const isActive = activeSection === link.href.substring(1);
+              return (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  onClick={() => setIsOpen(false)}
+                  className={`transition-colors ${isActive ? "text-accent font-bold" : "text-foreground/70 hover:text-accent"}`}
+                >
+                  {isActive ? `> ${link.name}` : link.name}
+                </a>
+              );
+            })}
             <a
               href={cvUrl}
               target="_blank"

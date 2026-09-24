@@ -110,7 +110,6 @@ export default function Contact() {
                 <li><a href="https://github.com/hclperera" target="_blank" rel="noreferrer" className="hover:text-accent transition-colors flex items-center justify-between">GitHub <span className="text-xs">↗</span></a></li>
                 <li><a href="https://linkedin.com/in/chanduka-lakshan" target="_blank" rel="noreferrer" className="hover:text-accent transition-colors flex items-center justify-between">LinkedIn <span className="text-xs">↗</span></a></li>
                 <li><a href="mailto:chandukalakshanbttdm@gmail.com" className="hover:text-accent transition-colors flex items-center justify-between">Email Terminal <span className="text-xs">↗</span></a></li>
-                <li className="pt-2 text-foreground/40">+94 7X XXX XXXX</li>
               </ul>
             </div>
           </div>
