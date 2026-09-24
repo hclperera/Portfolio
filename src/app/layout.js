@@ -1,10 +1,10 @@
 import localFont from "next/font/local";
-import { Space_Grotesk, JetBrains_Mono } from "next/font/google";
+import { Space_Grotesk, JetBrains_Mono, Outfit } from "next/font/google";
 import "./globals.css";
 
-const determination = localFont({
-  src: "./fonts/determination.ttf",
-  variable: "--font-determination",
+const outfit = Outfit({
+  variable: "--font-outfit",
+  subsets: ["latin"],
 });
 
 const spaceGrotesk = Space_Grotesk({
@@ -25,7 +25,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className="dark scroll-smooth">
-      <body className={`${spaceGrotesk.variable} ${jetbrainsMono.variable} ${determination.variable} antialiased font-sans`}>
+      <body className={`${spaceGrotesk.variable} ${jetbrainsMono.variable} ${outfit.variable} antialiased font-sans`}>
         {children}
       </body>
     </html>
