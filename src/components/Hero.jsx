@@ -83,7 +83,7 @@ export default function Hero() {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="order-2 lg:order-1 text-center lg:text-left z-20"
         >
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-border/50 border border-accent/20 text-sm font-mono text-accent mb-6 shadow-[0_0_15px_rgba(34,197,94,0.15)]">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-border/50 border border-accent/20 text-sm font-mono text-accent mb-6 shadow-[0_0_15px_rgba(254,128,25,0.15)]">
             <Terminal className="w-4 h-4" />
             <DecryptedText text='sys.status === "online"' maxIterations={20} speed={40} />
           </div>
@@ -104,7 +104,7 @@ export default function Hero() {
                 e.preventDefault();
                 document.querySelector("#projects")?.scrollIntoView({ behavior: "smooth" });
               }}
-              className="px-6 py-3 bg-accent text-accent-foreground font-semibold rounded-sm hover:bg-accent/90 transition-all flex items-center gap-2 cursor-pointer shadow-[0_0_20px_rgba(34,197,94,0.3)] hover:shadow-[0_0_30px_rgba(34,197,94,0.5)]"
+              className="px-6 py-3 bg-accent text-accent-foreground font-semibold rounded-sm hover:bg-accent/90 transition-all flex items-center gap-2 cursor-pointer shadow-[0_0_20px_rgba(254,128,25,0.3)] hover:shadow-[0_0_30px_rgba(254,128,25,0.5)]"
             >
               <Code className="w-4 h-4" /> Initialize Work
             </a>
@@ -139,8 +139,8 @@ export default function Hero() {
               style={{ transformStyle: "preserve-3d", transform: "rotateX(65deg) rotateY(10deg)" }}
             >
               {/* Rings */}
-              <div className="absolute w-[280px] h-[280px] rounded-full border border-accent/40 shadow-[0_0_20px_rgba(34,197,94,0.2)]" />
-              <div className="absolute w-[420px] h-[420px] rounded-full border border-accent/20 shadow-[0_0_10px_rgba(34,197,94,0.1)]" />
+              <div className="absolute w-[280px] h-[280px] rounded-full border border-accent/40 shadow-[0_0_20px_rgba(254,128,25,0.2)]" />
+              <div className="absolute w-[420px] h-[420px] rounded-full border border-accent/20 shadow-[0_0_10px_rgba(254,128,25,0.1)]" />
               <div className="absolute w-[560px] h-[560px] rounded-full border border-foreground/10" />
 
               {/* Orbiting Tech Nodes */}
@@ -153,7 +153,7 @@ export default function Hero() {
                   transition={shouldReduceMotion ? undefined : { duration: tech.speed, repeat: Infinity, ease: "linear" }}
                 >
                   <div 
-                    className="absolute bg-[#050505] border border-accent/40 p-3 sm:p-4 rounded-full shadow-[0_0_25px_rgba(34,197,94,0.4)] backdrop-blur-md"
+                    className="absolute bg-[#050505] border border-accent/40 p-3 sm:p-4 rounded-full shadow-[0_0_25px_rgba(254,128,25,0.4)] backdrop-blur-md"
                     style={{ top: 0, left: '50%', transform: 'translate(-50%, -50%) rotateX(-65deg) rotateY(-10deg)', transformStyle: "preserve-3d" }}
                   >
                     {/* Counter-rotate Z so the icon remains upright against the orbit */}
@@ -172,7 +172,7 @@ export default function Hero() {
 
             {/* Center Profile Picture (The "Core") */}
             <div className="absolute z-50 pointer-events-auto" style={{ transform: "translateZ(30px)" }}>
-              <div className={`relative w-48 h-48 sm:w-56 sm:h-56 rounded-full p-2 bg-gradient-to-tr from-accent/80 via-background to-accent/80 ${shouldReduceMotion ? "" : "animate-[spin_15s_linear_infinite]"} shadow-[0_0_60px_rgba(34,197,94,0.5)]`}>
+              <div className={`relative w-48 h-48 sm:w-56 sm:h-56 rounded-full p-2 bg-gradient-to-tr from-accent/80 via-background to-accent/80 ${shouldReduceMotion ? "" : "animate-[spin_15s_linear_infinite]"} shadow-[0_0_60px_rgba(254,128,25,0.5)]`}>
                 <div className={`w-full h-full rounded-full overflow-hidden ${shouldReduceMotion ? "" : "animate-[spin_15s_linear_infinite_reverse]"} border-4 border-background bg-background relative group`}>
                   <img 
                     src={profilePic} 
