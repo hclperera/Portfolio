@@ -9,7 +9,7 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ["/admin", "/api"],
       },
     ],
-    sitemap: "https://chanduka.dev/sitemap.xml",
-    host: "https://chanduka.dev",
+    sitemap: "https://chanduka.me/sitemap.xml",
+    host: "https://chanduka.me",
   };
 }

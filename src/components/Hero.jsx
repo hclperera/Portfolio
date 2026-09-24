@@ -13,6 +13,12 @@ export default function Hero() {
   const [profilePic, setProfilePic] = useState("/profile.png");
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const shouldReduceMotion = useReducedMotion();
+  const [liveStats, setLiveStats] = useState({
+    latency: 12,
+    threads: 128,
+    uptime: "99.999",
+    mem: 4096,
+  });
 
   useEffect(() => {
     supabase.from("profile").select("profile_picture_url").eq("id", 1).single().then(({data}) => {
@@ -20,7 +26,19 @@ export default function Hero() {
         setProfilePic(data.profile_picture_url);
       }
     });
-  }, []);
+
+    if (!shouldReduceMotion) {
+      const interval = setInterval(() => {
+        setLiveStats({
+          latency: Math.floor(Math.random() * 8) + 8,
+          threads: 120 + Math.floor(Math.random() * 16),
+          uptime: (99.990 + Math.random() * 0.009).toFixed(3),
+          mem: 4080 + Math.floor(Math.random() * 32),
+        });
+      }, 2000);
+      return () => clearInterval(interval);
+    }
+  }, [shouldReduceMotion]);
 
   const handleMouseMove = (e) => {
     const x = (e.clientX / window.innerWidth) - 0.5;
@@ -51,8 +69,8 @@ export default function Hero() {
         <div className="flex justify-between w-full">
           <div className="flex flex-col gap-2">
             <span>SYS_INIT: OK</span>
-            <span>MEM_ALLOC: 4096MB</span>
-            <span>NET_LATENCY: 12ms</span>
+            <span className="transition-all duration-1000">MEM_ALLOC: {liveStats.mem}MB</span>
+            <span className="transition-all duration-1000">NET_LATENCY: {liveStats.latency}ms</span>
           </div>
           <div className="flex flex-col gap-2 text-right">
             <span>GEO: 6.9271° N, 79.8612° E</span>
@@ -61,12 +79,12 @@ export default function Hero() {
         </div>
         <div className="flex justify-between w-full items-end">
           <div className="flex flex-col gap-2">
-            <span>UPTIME: 99.999%</span>
+            <span className="transition-all duration-1000">UPTIME: {liveStats.uptime}%</span>
             <span>BUILD: v2.4.1</span>
           </div>
           <div className="flex flex-col gap-2 text-right">
             <span>SECURE_CONN: TRUE</span>
-            <span>THREAD_CNT: 128</span>
+            <span className="transition-all duration-1000">THREAD_CNT: {liveStats.threads}</span>
           </div>
         </div>
       </div>

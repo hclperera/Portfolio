@@ -82,3 +82,68 @@ h1, h2, h3, h4, h5, h6 {
 .rotating-border-glow:hover::before {
   opacity: 1;
 }
+
+/* Marquee / ticker strip */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.marquee-track {
+  animation: marquee 25s linear infinite;
+  will-change: transform;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+/* Glitch text effect */
+@keyframes glitch-1 {
+  0%, 100% { clip-path: inset(40% 0 60% 0); transform: translate(-3px, 0); }
+  25%       { clip-path: inset(10% 0 80% 0); transform: translate(3px, 0); }
+  50%       { clip-path: inset(70% 0 20% 0); transform: translate(-2px, 0); }
+  75%       { clip-path: inset(20% 0 70% 0); transform: translate(2px, 0); }
+}
+
+@keyframes glitch-2 {
+  0%, 100% { clip-path: inset(60% 0 30% 0); transform: translate(3px, 0); }
+  33%       { clip-path: inset(5%  0 85% 0); transform: translate(-3px, 0); }
+  66%       { clip-path: inset(80% 0 10% 0); transform: translate(2px, 0); }
+}
+
+.glitch-text {
+  position: relative;
+}
+
+.glitch-text::before,
+.glitch-text::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  color: var(--accent);
+}
+
+.glitch-text::before {
+  animation: glitch-1 4s infinite steps(1);
+  opacity: 0.4;
+}
+
+.glitch-text::after {
+  animation: glitch-2 4s infinite steps(1);
+  opacity: 0.3;
+  color: #60a5fa;
+}
+
+/* Fade in up for page sections */
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.7s ease forwards;
+}
