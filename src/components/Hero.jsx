@@ -83,7 +83,7 @@ export default function Hero() {
       <div className="absolute inset-0 z-0 opacity-40 pointer-events-none bg-[linear-gradient(to_right,#80808033_1px,transparent_1px),linear-gradient(to_bottom,#80808033_1px,transparent_1px)] bg-[size:32px_32px] [mask-image:radial-gradient(ellipse_60%_60%_at_50%_50%,#000_70%,transparent_100%)]"></div>
 
       {/* Main content */}
-      <div className="max-w-7xl mx-auto px-4 w-full flex flex-col lg:grid lg:grid-cols-2 gap-10 lg:gap-12 items-center relative z-10 pt-28 pb-10">
+      <div className="max-w-7xl mx-auto px-4 w-full flex flex-col lg:grid lg:grid-cols-2 gap-8 lg:gap-12 items-center relative z-10 pt-24 lg:pt-32 pb-10">
 
         {/* LEFT (text) — on mobile appears first (top) */}
         <motion.div
@@ -147,19 +147,19 @@ export default function Hero() {
         </motion.div>
 
         {/* RIGHT (portrait container) — on mobile appears second (bottom) */}
-        <div className="order-2 w-full flex justify-center z-10 pointer-events-none mt-4 lg:mt-0">
+        <div className="order-2 w-full flex justify-center z-10 pointer-events-none mt-2 lg:mt-0">
           
-          <div className="relative w-full max-w-[380px] lg:max-w-none h-[340px] lg:h-[550px] overflow-hidden flex items-end justify-center">
+          <div className="relative w-full max-w-[340px] lg:max-w-none h-[320px] lg:h-[550px] overflow-hidden flex items-end justify-center">
              
              {/* Secondary charcoal diagonal bar */}
-             <div className="absolute top-[-10%] bottom-[-10%] right-[15%] lg:right-[20%] w-[180px] lg:w-[280px] bg-[#1a1a1a] border-l border-r border-white/10 -skew-x-[20deg] translate-x-[40px] lg:translate-x-[60px]" />
+             <div className="absolute top-[-10%] bottom-[-10%] right-[15%] lg:right-[20%] w-[200px] lg:w-[350px] bg-[linear-gradient(to_bottom,#101012_0%,#101012_70%,transparent_100%)] border-l border-[rgba(255,255,255,0.05)] -skew-x-[20deg] translate-x-[20px] lg:translate-x-[30px] hidden md:block z-0" />
              
              {/* Main Orange Slanted shape */}
-             <div className="absolute top-[-10%] bottom-[-10%] right-[15%] lg:right-[20%] w-[200px] lg:w-[350px] bg-[linear-gradient(to_bottom,#fe8019_0%,#a94308_35%,#241006_70%,transparent_100%)] -skew-x-[20deg]" />
+             <div className="absolute top-[-10%] bottom-[-10%] right-[15%] lg:right-[20%] w-[180px] lg:w-[320px] bg-[linear-gradient(to_bottom,#020202_5%,#fe8019_25%,#a94308_50%,#241006_75%,transparent_100%)] -skew-x-[20deg] z-10" />
 
              {/* Thick orange diagonal accent */}
-             <div className="absolute top-[-10%] bottom-[-10%] right-[15%] lg:right-[20%] w-[200px] lg:w-[350px] -skew-x-[20deg]">
-                 <div className="w-[4px] lg:w-[8px] h-full bg-[#fe8019] shadow-[0_0_15px_#fe8019]" />
+             <div className="absolute top-[-10%] bottom-[-10%] right-[15%] lg:right-[20%] w-[180px] lg:w-[320px] -skew-x-[20deg] z-10">
+                 <div className="w-[3px] lg:w-[7px] h-full bg-[#fe8019]" />
              </div>
              
              {/* Profile Picture */}
@@ -172,10 +172,10 @@ export default function Hero() {
                <img
                  src={profilePic}
                  alt="Chanduka Lakshan"
-                 className="w-auto h-full max-h-[340px] lg:max-h-[550px] object-contain drop-shadow-2xl"
+                 className="w-auto h-full max-h-[320px] lg:max-h-[550px] object-contain drop-shadow-2xl"
                  style={{
-                   maskImage: "linear-gradient(to bottom, black 75%, transparent 100%)",
-                   WebkitMaskImage: "linear-gradient(to bottom, black 75%, transparent 100%)"
+                   maskImage: "linear-gradient(to bottom, black 50%, black 75%, transparent 100%)",
+                   WebkitMaskImage: "linear-gradient(to bottom, black 50%, black 75%, transparent 100%)"
                  }}
                />
              </motion.div>
