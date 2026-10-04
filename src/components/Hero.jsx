@@ -89,26 +89,23 @@ export default function Hero() {
         <div className="order-1 lg:order-2 relative flex items-center justify-center w-full z-10 pointer-events-none"
           style={{ height: "min(70vw, 480px)" }}>
           
-          {/* Background Radial Glow */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[340px] md:w-[440px] h-[340px] md:h-[440px] bg-accent/25 rounded-full blur-[100px]" />
+          {/* Subtle Back slanted shape */}
+          <div className="absolute inset-y-[-15%] right-[5%] md:right-[15%] w-[240px] md:w-[320px] bg-white/[0.01] border-l border-r border-white/5 -skew-x-[18deg]" />
           
-          {/* Concentric Rings */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[260px] md:w-[340px] h-[260px] md:h-[340px] rounded-full border border-accent/30" />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[360px] md:w-[460px] h-[360px] md:h-[460px] rounded-full border border-accent/15" />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[460px] md:w-[600px] h-[460px] md:h-[600px] rounded-full border border-accent/5" />
+          {/* Main Orange Slanted shape */}
+          <div className="absolute inset-y-[-10%] right-[15%] md:right-[28%] w-[260px] md:w-[340px] bg-gradient-to-tr from-[#050505] via-accent to-[#ffb47a] -skew-x-[18deg] shadow-[-30px_0_80px_rgba(254,128,25,0.2)] border-l border-accent/40" />
           
           {/* Profile Picture */}
           <motion.div
             className="absolute z-20 pointer-events-auto flex items-end justify-center w-full h-full"
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, x: 30 }}
+            animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1, ease: "easeOut" }}
           >
             <img
               src={profilePic}
               alt="Chanduka Lakshan"
               className="w-auto h-full max-h-[460px] object-contain drop-shadow-2xl"
-              style={{ maskImage: "linear-gradient(to bottom, black 70%, transparent 100%)", WebkitMaskImage: "linear-gradient(to bottom, black 70%, transparent 100%)" }}
             />
           </motion.div>
         </div>
