@@ -144,7 +144,7 @@ export default function Hero() {
                   transition={shouldReduceMotion ? undefined : { duration: tech.speed, repeat: Infinity, ease: "linear" }}
                 >
                   <div
-                    className="absolute bg-[#050505] border border-accent/40 p-3 rounded-full shadow-[0_0_25px_rgba(34,197,94,0.4)] backdrop-blur-md"
+                    className="absolute bg-[#050505] border border-accent/40 p-3 rounded-full shadow-[0_0_25px_rgba(254,128,25,0.4)] backdrop-blur-md"
                     style={{ top: 0, left: '50%', transform: 'translate(-50%, -50%) rotateX(-65deg) rotateY(-10deg)', transformStyle: "preserve-3d" }}
                   >
                     <motion.div
@@ -162,7 +162,7 @@ export default function Hero() {
 
             {/* Center Profile Picture */}
             <div className="absolute z-50 pointer-events-auto" style={{ transform: "translateZ(30px)" }}>
-              <div className={`relative w-44 h-44 rounded-full p-[3px] bg-gradient-to-tr from-accent/80 via-background to-accent/80 ${shouldReduceMotion ? "" : "animate-[spin_15s_linear_infinite]"} shadow-[0_0_60px_rgba(34,197,94,0.5)]`}>
+              <div className={`relative w-44 h-44 rounded-full p-[3px] bg-gradient-to-tr from-accent/80 via-background to-accent/80 ${shouldReduceMotion ? "" : "animate-[spin_15s_linear_infinite]"} shadow-[0_0_60px_rgba(254,128,25,0.5)]`}>
                 <div className={`w-full h-full rounded-full overflow-hidden ${shouldReduceMotion ? "" : "animate-[spin_15s_linear_infinite_reverse]"} border-2 border-background bg-background relative group`}>
                   <img
                     src={profilePic}
@@ -185,7 +185,7 @@ export default function Hero() {
           className="order-2 lg:order-1 text-center lg:text-left z-20 pb-8 lg:pb-0"
         >
           <motion.div
-            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-border/50 border border-accent/20 text-xs font-mono text-accent mb-5 shadow-[0_0_15px_rgba(34,197,94,0.15)]"
+            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-border/50 border border-accent/20 text-xs font-mono text-accent mb-5 shadow-[0_0_15px_rgba(254,128,25,0.15)]"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: 0.4 }}
@@ -221,9 +221,9 @@ export default function Hero() {
                 e.preventDefault();
                 document.querySelector("#projects")?.scrollIntoView({ behavior: "smooth" });
               }}
-              className="px-5 py-2.5 bg-accent text-accent-foreground font-semibold rounded-sm hover:bg-accent/90 transition-all flex items-center gap-2 cursor-pointer shadow-[0_0_20px_rgba(34,197,94,0.3)] hover:shadow-[0_0_30px_rgba(34,197,94,0.5)] text-sm"
+              className="px-5 py-2.5 bg-accent text-accent-foreground font-semibold rounded-sm hover:bg-accent/90 transition-all flex items-center gap-2 cursor-pointer shadow-[0_0_20px_rgba(254,128,25,0.3)] hover:shadow-[0_0_30px_rgba(254,128,25,0.5)] text-sm"
             >
-              <Code className="w-4 h-4" /> Initialize Work
+              <Code className="w-4 h-4" /> View Projects
             </a>
             <a
               href="#contact"
@@ -233,7 +233,7 @@ export default function Hero() {
               }}
               className="px-5 py-2.5 border border-border hover:border-accent text-foreground hover:text-accent rounded-sm transition-colors flex items-center gap-2 cursor-pointer bg-[#050505]/50 backdrop-blur-sm text-sm"
             >
-              <Cpu className="w-4 h-4" /> Ping Server
+              <Cpu className="w-4 h-4" /> Contact Me
             </a>
           </motion.div>
         </motion.div>

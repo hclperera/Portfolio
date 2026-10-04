@@ -9,34 +9,44 @@ export default function Preloader({ onComplete }) {
   const [done, setDone] = useState(false);
 
   useEffect(() => {
-    // Smoothly increment progress bar
-    const start = Date.now();
-    const duration = 2600;
-    const tick = setInterval(() => {
-      const elapsed = Date.now() - start;
-      const p = Math.min(100, Math.round((elapsed / duration) * 100));
-      setProgress(p);
-      if (p >= 100) clearInterval(tick);
-    }, 30);
+    let tick;
+    let isComplete = false;
 
-    // Phase: loading → reveal
-    const revealTimer = setTimeout(() => setPhase("reveal"), 2700);
-
-    // Phase: reveal → exit
-    const exitTimer = setTimeout(() => {
-      setPhase("exit");
-      setTimeout(() => {
-        setDone(true);
-        onComplete?.();
-      }, 700);
-    }, 3500);
-
-    return () => {
+    const handleLoadComplete = () => {
+      if (isComplete) return;
+      isComplete = true;
       clearInterval(tick);
-      clearTimeout(revealTimer);
-      clearTimeout(exitTimer);
+      setProgress(100);
+      setPhase("reveal");
+      setTimeout(() => {
+        setPhase("exit");
+        setTimeout(() => {
+          setDone(true);
+          onComplete?.();
+        }, 700);
+      }, 800);
     };
-  }, []);
+
+    if (document.readyState === "complete") {
+      handleLoadComplete();
+    } else {
+      let currentProgress = 0;
+      tick = setInterval(() => {
+        currentProgress += (90 - currentProgress) * 0.1;
+        setProgress(Math.round(currentProgress));
+      }, 100);
+
+      window.addEventListener("load", handleLoadComplete);
+
+      const fallbackTimer = setTimeout(handleLoadComplete, 5000);
+
+      return () => {
+        clearInterval(tick);
+        clearTimeout(fallbackTimer);
+        window.removeEventListener("load", handleLoadComplete);
+      };
+    }
+  }, [onComplete]);
 
   if (done) return null;
 
