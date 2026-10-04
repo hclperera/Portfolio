@@ -87,13 +87,13 @@ export default function Hero() {
 
         {/* RIGHT (orbit) — on mobile appears first (top) */}
         <div className="order-1 lg:order-2 relative flex items-center justify-center w-full z-10 pointer-events-none"
-          style={{ height: "min(70vw, 480px)" }}>
+          style={{ height: "min(80vw, 550px)" }}>
           
-          {/* Subtle Back slanted shape */}
-          <div className="absolute inset-y-[-15%] right-[5%] md:right-[15%] w-[240px] md:w-[320px] bg-white/[0.01] border-l border-r border-white/5 -skew-x-[18deg]" />
+          {/* Subtle Back slanted shape for depth */}
+          <div className="absolute top-[-30%] bottom-[-30%] right-[10%] md:right-[15%] w-[300px] md:w-[400px] bg-[#241006]/30 border-l border-white/5 -skew-x-[20deg]" />
           
           {/* Main Orange Slanted shape */}
-          <div className="absolute inset-y-[-10%] right-[15%] md:right-[28%] w-[260px] md:w-[340px] bg-gradient-to-tr from-[#050505] via-accent to-[#ffb47a] -skew-x-[18deg] shadow-[-30px_0_80px_rgba(254,128,25,0.2)] border-l border-accent/40" />
+          <div className="absolute top-[-30%] bottom-[-30%] right-[20%] md:right-[25%] w-[320px] md:w-[420px] bg-[linear-gradient(to_bottom,#fe8019_0%,#a94308_35%,#241006_70%,transparent_100%)] -skew-x-[20deg] shadow-[-30px_0_80px_rgba(254,128,25,0.15)] border-l border-[#fe8019]" />
           
           {/* Profile Picture */}
           <motion.div
@@ -105,7 +105,11 @@ export default function Hero() {
             <img
               src={profilePic}
               alt="Chanduka Lakshan"
-              className="w-auto h-full max-h-[460px] object-contain drop-shadow-2xl"
+              className="w-auto h-full max-h-[550px] object-contain drop-shadow-2xl"
+              style={{
+                maskImage: "linear-gradient(to bottom, black 70%, transparent 100%)",
+                WebkitMaskImage: "linear-gradient(to bottom, black 70%, transparent 100%)"
+              }}
             />
           </motion.div>
         </div>
