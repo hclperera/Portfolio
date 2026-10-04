@@ -53,9 +53,8 @@ export default function Hero() {
       onMouseMove={shouldReduceMotion ? undefined : handleMouseMove}
       style={{ perspective: "1500px" }}
     >
-      {/* Background telemetry text — positioned to avoid navbar, content, and ticker */}
       {/* TOP-LEFT corner: stays below navbar (pt-20 = 80px) and hugs left edge */}
-      <div className="absolute top-0 left-0 pointer-events-none z-0 flex flex-col gap-2 pt-20 pl-4 md:pl-8 opacity-30 font-mono text-xs text-accent select-none">
+      <div className="absolute top-0 left-0 pointer-events-none z-0 hidden md:flex flex-col gap-2 pt-20 pl-4 md:pl-8 opacity-30 font-mono text-xs text-accent select-none">
         <span>SYS_INIT: OK</span>
         <span className="transition-all duration-1000">MEM_ALLOC: {liveStats.mem}MB</span>
         <span className="transition-all duration-1000">NET_LATENCY: {liveStats.latency}ms</span>
@@ -118,7 +117,7 @@ export default function Hero() {
           </motion.p>
 
           <motion.div
-            className="flex flex-wrap justify-center lg:justify-start gap-3 font-mono"
+            className="flex flex-col sm:flex-row flex-wrap justify-center lg:justify-start gap-4 font-mono w-full px-4 sm:px-0"
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.8 }}
@@ -129,7 +128,7 @@ export default function Hero() {
                 e.preventDefault();
                 document.querySelector("#projects")?.scrollIntoView({ behavior: "smooth" });
               }}
-              className="px-5 py-2.5 bg-accent text-accent-foreground font-semibold rounded-sm hover:bg-accent/90 transition-all flex items-center gap-2 cursor-pointer shadow-[0_0_20px_rgba(254,128,25,0.3)] hover:shadow-[0_0_30px_rgba(254,128,25,0.5)] text-sm whitespace-nowrap"
+              className="px-5 py-3 sm:py-2.5 bg-accent text-accent-foreground font-semibold rounded-sm hover:bg-accent/90 transition-all flex items-center justify-center gap-2 cursor-pointer shadow-[0_0_20px_rgba(254,128,25,0.3)] hover:shadow-[0_0_30px_rgba(254,128,25,0.5)] text-sm"
             >
               <Code className="w-4 h-4" /> View Projects
             </a>
@@ -139,7 +138,7 @@ export default function Hero() {
                 e.preventDefault();
                 document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" });
               }}
-              className="px-5 py-2.5 border border-border hover:border-accent text-foreground hover:text-accent rounded-sm transition-colors flex items-center gap-2 cursor-pointer bg-[#050505]/50 backdrop-blur-sm text-sm whitespace-nowrap"
+              className="px-5 py-3 sm:py-2.5 border border-border hover:border-accent text-foreground hover:text-accent rounded-sm transition-colors flex items-center justify-center gap-2 cursor-pointer bg-[#050505]/50 backdrop-blur-sm text-sm"
             >
               <Cpu className="w-4 h-4" /> Contact Me
             </a>
@@ -152,14 +151,14 @@ export default function Hero() {
           <div className="relative w-full max-w-[340px] lg:max-w-none h-[320px] lg:h-[550px] overflow-hidden flex items-end justify-center">
              
              {/* Secondary charcoal diagonal bar */}
-             <div className="absolute top-[-10%] bottom-[-10%] right-[15%] lg:right-[20%] w-[200px] lg:w-[350px] bg-[linear-gradient(to_bottom,#101012_0%,#101012_70%,transparent_100%)] border-l border-[rgba(255,255,255,0.05)] -skew-x-[20deg] translate-x-[20px] lg:translate-x-[30px] hidden md:block z-0" />
+             <div className="absolute top-[-10%] bottom-[-10%] right-[15%] lg:right-[20%] w-[200px] lg:w-[350px] bg-[linear-gradient(to_bottom,#101012_0%,#101012_65%,transparent_75%)] border-l border-[rgba(255,255,255,0.05)] -skew-x-[20deg] translate-x-[20px] lg:translate-x-[30px] hidden md:block z-0" />
              
              {/* Main Orange Slanted shape */}
-             <div className="absolute top-[-10%] bottom-[-10%] right-[15%] lg:right-[20%] w-[180px] lg:w-[320px] bg-[linear-gradient(to_bottom,#020202_5%,#fe8019_25%,#a94308_50%,#241006_75%,transparent_100%)] -skew-x-[20deg] z-10" />
+             <div className="absolute top-[-10%] bottom-[-10%] right-[15%] lg:right-[20%] w-[180px] lg:w-[320px] bg-[linear-gradient(to_bottom,#3a1402_0%,#fe8019_30%,#a94308_55%,transparent_75%)] -skew-x-[20deg] z-10" />
 
              {/* Thick orange diagonal accent */}
              <div className="absolute top-[-10%] bottom-[-10%] right-[15%] lg:right-[20%] w-[180px] lg:w-[320px] -skew-x-[20deg] z-10">
-                 <div className="w-[3px] lg:w-[7px] h-full bg-[#fe8019]" />
+                 <div className="w-[3px] lg:w-[7px] h-full bg-[linear-gradient(to_bottom,#fe8019_0%,#fe8019_60%,transparent_75%)]" />
              </div>
              
              {/* Profile Picture */}
@@ -174,8 +173,8 @@ export default function Hero() {
                  alt="Chanduka Lakshan"
                  className="w-auto h-full max-h-[320px] lg:max-h-[550px] object-contain drop-shadow-2xl"
                  style={{
-                   maskImage: "linear-gradient(to bottom, black 50%, black 75%, transparent 100%)",
-                   WebkitMaskImage: "linear-gradient(to bottom, black 50%, black 75%, transparent 100%)"
+                   maskImage: "linear-gradient(to bottom, black 80%, black 85%, transparent 100%)",
+                   WebkitMaskImage: "linear-gradient(to bottom, black 80%, black 85%, transparent 100%)"
                  }}
                />
              </motion.div>
