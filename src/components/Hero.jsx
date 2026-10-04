@@ -87,15 +87,15 @@ export default function Hero() {
 
         {/* RIGHT (orbit) — on mobile appears first (top) */}
         <div className="order-1 lg:order-2 relative flex items-center justify-center w-full z-10 pointer-events-none"
-          style={{ height: "min(60vw, 400px)" }}>
+          style={{ height: "min(70vw, 480px)" }}>
           
           {/* Background Radial Glow */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[280px] md:w-[360px] h-[280px] md:h-[360px] bg-accent/30 rounded-full blur-[90px]" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[340px] md:w-[440px] h-[340px] md:h-[440px] bg-accent/25 rounded-full blur-[100px]" />
           
           {/* Concentric Rings */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[220px] md:w-[280px] h-[220px] md:h-[280px] rounded-full border border-accent/30" />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] md:w-[380px] h-[300px] md:h-[380px] rounded-full border border-accent/15" />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[380px] md:w-[480px] h-[380px] md:h-[480px] rounded-full border border-accent/5" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[260px] md:w-[340px] h-[260px] md:h-[340px] rounded-full border border-accent/30" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[360px] md:w-[460px] h-[360px] md:h-[460px] rounded-full border border-accent/15" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[460px] md:w-[600px] h-[460px] md:h-[600px] rounded-full border border-accent/5" />
           
           {/* Profile Picture */}
           <motion.div
@@ -107,7 +107,8 @@ export default function Hero() {
             <img
               src={profilePic}
               alt="Chanduka Lakshan"
-              className="w-auto h-full max-h-[380px] object-contain drop-shadow-2xl"
+              className="w-auto h-full max-h-[460px] object-contain drop-shadow-2xl"
+              style={{ maskImage: "linear-gradient(to bottom, black 70%, transparent 100%)", WebkitMaskImage: "linear-gradient(to bottom, black 70%, transparent 100%)" }}
             />
           </motion.div>
         </div>
