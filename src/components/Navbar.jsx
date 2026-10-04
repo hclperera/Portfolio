@@ -52,8 +52,8 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed w-full top-0 z-50 transition-all duration-300 border-b border-transparent ${
-        scrolled ? "bg-background/80 backdrop-blur-md border-border py-3" : "bg-transparent py-5"
+      className={`fixed w-full top-0 z-[99] transition-all duration-300 border-b border-transparent bg-[#09090b] ${
+        scrolled ? "border-border py-3" : "py-5"
       }`}
     >
       <div className="max-w-6xl mx-auto px-4 md:px-6 flex items-center justify-between">
@@ -99,7 +99,7 @@ export default function Navbar() {
 
       {/* Mobile Nav */}
       {isOpen && (
-        <div className="md:hidden absolute top-full left-0 w-full bg-background border-b border-border shadow-lg font-mono">
+        <div className="md:hidden absolute top-full left-0 w-full bg-[#09090b] border-b border-border shadow-lg font-mono">
           <div className="flex flex-col p-4 gap-4">
             {NAV_LINKS.map((link) => {
               const isActive = activeSection === link.href.substring(1);

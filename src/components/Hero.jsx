@@ -62,19 +62,19 @@ export default function Hero() {
       </div>
 
       {/* TOP-RIGHT corner: stays below navbar, hugs right edge */}
-      <div className="absolute top-0 right-0 pointer-events-none z-0 flex flex-col gap-2 items-end pt-20 pr-4 md:pr-8 opacity-30 font-mono text-xs text-accent select-none">
+      <div className="absolute top-0 right-0 pointer-events-none z-0 hidden md:flex flex-col gap-2 items-end pt-20 pr-4 md:pr-8 opacity-30 font-mono text-xs text-accent select-none">
         <span>GEO: 6.9271° N, 79.8612° E</span>
         <span>CLUSTER: ASIA-SOUTH-1</span>
       </div>
 
       {/* BOTTOM-LEFT corner: stays above the ticker strip (pb-4) */}
-      <div className="absolute bottom-0 left-0 pointer-events-none z-0 flex flex-col gap-2 pb-4 pl-4 md:pl-8 opacity-30 font-mono text-xs text-accent select-none">
+      <div className="absolute bottom-0 left-0 pointer-events-none z-0 hidden md:flex flex-col gap-2 pb-4 pl-4 md:pl-8 opacity-30 font-mono text-xs text-accent select-none">
         <span className="transition-all duration-1000">UPTIME: {liveStats.uptime}%</span>
         <span>BUILD: v2.4.1</span>
       </div>
 
       {/* BOTTOM-RIGHT corner: stays above the ticker strip */}
-      <div className="absolute bottom-0 right-0 pointer-events-none z-0 flex flex-col gap-2 items-end pb-4 pr-4 md:pr-8 opacity-30 font-mono text-xs text-accent select-none">
+      <div className="absolute bottom-0 right-0 pointer-events-none z-0 hidden md:flex flex-col gap-2 items-end pb-4 pr-4 md:pr-8 opacity-30 font-mono text-xs text-accent select-none">
         <span>SECURE_CONN: TRUE</span>
         <span className="transition-all duration-1000">THREAD_CNT: {liveStats.threads}</span>
       </div>
@@ -82,44 +82,15 @@ export default function Hero() {
       {/* Grid Pattern Overlay */}
       <div className="absolute inset-0 z-0 opacity-40 pointer-events-none bg-[linear-gradient(to_right,#80808033_1px,transparent_1px),linear-gradient(to_bottom,#80808033_1px,transparent_1px)] bg-[size:32px_32px] [mask-image:radial-gradient(ellipse_60%_60%_at_50%_50%,#000_70%,transparent_100%)]"></div>
 
-      {/* Main content — on mobile: stack orbit top, text below */}
-      <div className="max-w-7xl mx-auto px-4 w-full flex flex-col lg:grid lg:grid-cols-2 gap-4 lg:gap-12 items-center relative z-10 pt-20 pb-10">
+      {/* Main content */}
+      <div className="max-w-7xl mx-auto px-4 w-full flex flex-col lg:grid lg:grid-cols-2 gap-10 lg:gap-12 items-center relative z-10 pt-28 pb-10">
 
-        {/* RIGHT (orbit) — on mobile appears first (top) */}
-        <div className="order-1 lg:order-2 relative flex items-center justify-center w-full z-10 pointer-events-none"
-          style={{ height: "min(80vw, 550px)" }}>
-          
-          {/* Subtle Back slanted shape for depth */}
-          <div className="absolute top-[-30%] bottom-[-30%] right-[10%] md:right-[15%] w-[300px] md:w-[400px] bg-[#241006]/30 border-l border-white/5 -skew-x-[20deg]" />
-          
-          {/* Main Orange Slanted shape */}
-          <div className="absolute top-[-30%] bottom-[-30%] right-[20%] md:right-[25%] w-[320px] md:w-[420px] bg-[linear-gradient(to_bottom,#fe8019_0%,#a94308_35%,#241006_70%,transparent_100%)] -skew-x-[20deg] shadow-[-30px_0_80px_rgba(254,128,25,0.15)] border-l border-[#fe8019]" />
-          
-          {/* Profile Picture */}
-          <motion.div
-            className="absolute z-20 pointer-events-auto flex items-end justify-center w-full h-full"
-            initial={{ opacity: 0, x: 30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1, ease: "easeOut" }}
-          >
-            <img
-              src={profilePic}
-              alt="Chanduka Lakshan"
-              className="w-auto h-full max-h-[550px] object-contain drop-shadow-2xl"
-              style={{
-                maskImage: "linear-gradient(to bottom, black 70%, transparent 100%)",
-                WebkitMaskImage: "linear-gradient(to bottom, black 70%, transparent 100%)"
-              }}
-            />
-          </motion.div>
-        </div>
-
-        {/* LEFT (text) — on mobile appears second (below) */}
+        {/* LEFT (text) — on mobile appears first (top) */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-          className="order-2 lg:order-1 text-center lg:text-left z-20 pb-8 lg:pb-0"
+          className="order-1 text-center lg:text-left z-20"
         >
           <motion.div
             className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-border/50 border border-accent/20 text-xs font-mono text-accent mb-5 shadow-[0_0_15px_rgba(254,128,25,0.15)]"
@@ -158,7 +129,7 @@ export default function Hero() {
                 e.preventDefault();
                 document.querySelector("#projects")?.scrollIntoView({ behavior: "smooth" });
               }}
-              className="px-5 py-2.5 bg-accent text-accent-foreground font-semibold rounded-sm hover:bg-accent/90 transition-all flex items-center gap-2 cursor-pointer shadow-[0_0_20px_rgba(254,128,25,0.3)] hover:shadow-[0_0_30px_rgba(254,128,25,0.5)] text-sm"
+              className="px-5 py-2.5 bg-accent text-accent-foreground font-semibold rounded-sm hover:bg-accent/90 transition-all flex items-center gap-2 cursor-pointer shadow-[0_0_20px_rgba(254,128,25,0.3)] hover:shadow-[0_0_30px_rgba(254,128,25,0.5)] text-sm whitespace-nowrap"
             >
               <Code className="w-4 h-4" /> View Projects
             </a>
@@ -168,12 +139,50 @@ export default function Hero() {
                 e.preventDefault();
                 document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" });
               }}
-              className="px-5 py-2.5 border border-border hover:border-accent text-foreground hover:text-accent rounded-sm transition-colors flex items-center gap-2 cursor-pointer bg-[#050505]/50 backdrop-blur-sm text-sm"
+              className="px-5 py-2.5 border border-border hover:border-accent text-foreground hover:text-accent rounded-sm transition-colors flex items-center gap-2 cursor-pointer bg-[#050505]/50 backdrop-blur-sm text-sm whitespace-nowrap"
             >
               <Cpu className="w-4 h-4" /> Contact Me
             </a>
           </motion.div>
         </motion.div>
+
+        {/* RIGHT (portrait container) — on mobile appears second (bottom) */}
+        <div className="order-2 w-full flex justify-center z-10 pointer-events-none mt-4 lg:mt-0">
+          
+          <div className="relative w-full max-w-[380px] lg:max-w-none h-[340px] lg:h-[550px] overflow-hidden flex items-end justify-center">
+             
+             {/* Secondary charcoal diagonal bar */}
+             <div className="absolute top-[-10%] bottom-[-10%] right-[15%] lg:right-[20%] w-[180px] lg:w-[280px] bg-[#1a1a1a] border-l border-r border-white/10 -skew-x-[20deg] translate-x-[40px] lg:translate-x-[60px]" />
+             
+             {/* Main Orange Slanted shape */}
+             <div className="absolute top-[-10%] bottom-[-10%] right-[15%] lg:right-[20%] w-[200px] lg:w-[350px] bg-[linear-gradient(to_bottom,#fe8019_0%,#a94308_35%,#241006_70%,transparent_100%)] -skew-x-[20deg]" />
+
+             {/* Thick orange diagonal accent */}
+             <div className="absolute top-[-10%] bottom-[-10%] right-[15%] lg:right-[20%] w-[200px] lg:w-[350px] -skew-x-[20deg]">
+                 <div className="w-[4px] lg:w-[8px] h-full bg-[#fe8019] shadow-[0_0_15px_#fe8019]" />
+             </div>
+             
+             {/* Profile Picture */}
+             <motion.div
+               className="absolute z-20 pointer-events-auto flex items-end justify-center w-full h-full bottom-0"
+               initial={{ opacity: 0, x: 30 }}
+               animate={{ opacity: 1, x: 0 }}
+               transition={{ duration: 1, ease: "easeOut" }}
+             >
+               <img
+                 src={profilePic}
+                 alt="Chanduka Lakshan"
+                 className="w-auto h-full max-h-[340px] lg:max-h-[550px] object-contain drop-shadow-2xl"
+                 style={{
+                   maskImage: "linear-gradient(to bottom, black 75%, transparent 100%)",
+                   WebkitMaskImage: "linear-gradient(to bottom, black 75%, transparent 100%)"
+                 }}
+               />
+             </motion.div>
+          </div>
+        </div>
+
+
 
       </div>
 
