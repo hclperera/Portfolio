@@ -5,9 +5,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { Terminal, Code, Cpu, ChevronDown } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 import DecryptedText from "./react-bits/DecryptedText";
-import { FaDocker, FaLinux, FaGitAlt } from "react-icons/fa";
-import { SiFlutter, SiNextdotjs } from "react-icons/si";
-import { VscAzure } from "react-icons/vsc";
+
 
 export default function Hero() {
   const [profilePic, setProfilePic] = useState("/profile.png");
@@ -46,16 +44,7 @@ export default function Hero() {
     setMousePos({ x, y });
   };
 
-  const TECH_ORBITS = [
-    { icon: <FaDocker size={24} className="text-blue-500" />, radius: 140, angle: 0, speed: 20 },
-    { icon: <FaLinux size={24} className="text-white" />, radius: 140, angle: 180, speed: 20 },
 
-    { icon: <VscAzure size={28} className="text-blue-400" />, radius: 210, angle: 90, speed: 30 },
-    { icon: <SiFlutter size={28} className="text-cyan-400" />, radius: 210, angle: 270, speed: 30 },
-
-    { icon: <FaGitAlt size={22} className="text-orange-500" />, radius: 280, angle: 45, speed: 45 },
-    { icon: <SiNextdotjs size={22} className="text-white" />, radius: 280, angle: 225, speed: 45 },
-  ];
 
   return (
     <section
@@ -98,82 +87,28 @@ export default function Hero() {
 
         {/* RIGHT (orbit) — on mobile appears first (top) */}
         <div className="order-1 lg:order-2 relative flex items-center justify-center w-full z-10 pointer-events-none"
-          style={{ height: "min(55vw, 360px)" }}>
+          style={{ height: "min(60vw, 400px)" }}>
+          
+          {/* Background Radial Glow */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[280px] md:w-[360px] h-[280px] md:h-[360px] bg-accent/30 rounded-full blur-[90px]" />
+          
+          {/* Concentric Rings */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[220px] md:w-[280px] h-[220px] md:h-[280px] rounded-full border border-accent/30" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] md:w-[380px] h-[300px] md:h-[380px] rounded-full border border-accent/15" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[380px] md:w-[480px] h-[380px] md:h-[480px] rounded-full border border-accent/5" />
+          
+          {/* Profile Picture */}
           <motion.div
-            className="absolute flex items-center justify-center"
-            style={{
-              transformStyle: "preserve-3d",
-              width: "560px",
-              height: "560px",
-              scale: 0.55,
-            }}
-            animate={{
-              rotateX: shouldReduceMotion ? 0 : mousePos.y * 30,
-              rotateY: shouldReduceMotion ? 0 : mousePos.x * 30,
-              scale: 0.55,
-            }}
-            transition={{ type: "spring", stiffness: 40, damping: 20 }}
+            className="absolute z-20 pointer-events-auto flex items-end justify-center w-full h-full"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, ease: "easeOut" }}
           >
-            {/* Responsive scale wrapper */}
-            <motion.div
-              className="absolute w-full h-full flex items-center justify-center"
-              initial={{ scale: 0.55 }}
-              animate={{ scale: 0.55 }}
-              style={{ transformStyle: "preserve-3d" }}
-            >
-              {/* do nothing — use parent scale */}
-            </motion.div>
-
-            {/* 3D Tilted Orbit Container */}
-            <div
-              className="absolute w-full h-full flex items-center justify-center"
-              style={{ transformStyle: "preserve-3d", transform: "rotateX(65deg) rotateY(10deg)" }}
-            >
-              {/* Rings */}
-              <div className="absolute w-[280px] h-[280px] rounded-full border border-accent/40 shadow-[0_0_20px_rgba(254,128,25,0.2)]" />
-              <div className="absolute w-[420px] h-[420px] rounded-full border border-accent/20 shadow-[0_0_10px_rgba(254,128,25,0.1)]" />
-              <div className="absolute w-[560px] h-[560px] rounded-full border border-foreground/10" />
-
-              {/* Orbiting Tech Nodes */}
-              {TECH_ORBITS.map((tech, i) => (
-                <motion.div
-                  key={i}
-                  className="absolute flex items-center justify-center"
-                  style={{ width: tech.radius * 2, height: tech.radius * 2, transformStyle: "preserve-3d", transform: `rotateZ(${tech.angle}deg)` }}
-                  animate={shouldReduceMotion ? undefined : { rotateZ: [tech.angle, tech.angle + 360] }}
-                  transition={shouldReduceMotion ? undefined : { duration: tech.speed, repeat: Infinity, ease: "linear" }}
-                >
-                  <div
-                    className="absolute bg-[#050505] border border-accent/40 p-3 rounded-full shadow-[0_0_25px_rgba(254,128,25,0.4)] backdrop-blur-md"
-                    style={{ top: 0, left: '50%', transform: 'translate(-50%, -50%) rotateX(-65deg) rotateY(-10deg)', transformStyle: "preserve-3d" }}
-                  >
-                    <motion.div
-                      animate={shouldReduceMotion ? undefined : { rotateZ: [-(tech.angle), -(tech.angle + 360)] }}
-                      transition={shouldReduceMotion ? undefined : { duration: tech.speed, repeat: Infinity, ease: "linear" }}
-                      style={shouldReduceMotion ? { transform: `rotateZ(${-tech.angle}deg)` } : undefined}
-                      className="flex items-center justify-center drop-shadow-[0_0_10px_rgba(255,255,255,0.2)]"
-                    >
-                      {tech.icon}
-                    </motion.div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-
-            {/* Center Profile Picture */}
-            <div className="absolute z-50 pointer-events-auto" style={{ transform: "translateZ(30px)" }}>
-              <div className={`relative w-44 h-44 rounded-full p-[3px] bg-gradient-to-tr from-accent/80 via-background to-accent/80 ${shouldReduceMotion ? "" : "animate-[spin_15s_linear_infinite]"} shadow-[0_0_60px_rgba(254,128,25,0.5)]`}>
-                <div className={`w-full h-full rounded-full overflow-hidden ${shouldReduceMotion ? "" : "animate-[spin_15s_linear_infinite_reverse]"} border-2 border-background bg-background relative group`}>
-                  <img
-                    src={profilePic}
-                    alt="Chanduka Lakshan"
-                    className="w-full h-full object-cover scale-110 transition-transform duration-700 group-hover:scale-100"
-                  />
-                  <div className="absolute inset-0 bg-accent/10 mix-blend-overlay group-hover:opacity-0 transition-opacity duration-500"></div>
-                </div>
-              </div>
-            </div>
-
+            <img
+              src={profilePic}
+              alt="Chanduka Lakshan"
+              className="w-auto h-full max-h-[380px] object-contain drop-shadow-2xl"
+            />
           </motion.div>
         </div>
 
