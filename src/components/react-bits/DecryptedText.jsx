@@ -20,6 +20,7 @@ const styles = {
   }
 };
 
+/* eslint-disable react-hooks/set-state-in-effect */
 export default function DecryptedText({
   text,
   speed = 50,

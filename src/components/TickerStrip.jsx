@@ -3,21 +3,20 @@
 // Continuously scrolling marquee strip — used as section dividers
 const ITEMS = [
   "DevOps",
-  "Cloud Infrastructure",
+  "Microsoft Azure",
+  "Mobile Development",
   "Flutter",
-  "Azure",
-  "Docker",
+  "Dart",
   "Linux",
-  "Android",
-  "Next.js",
-  "CI/CD",
+  "Docker",
   "Python",
+  "Bash",
   "Git",
-  "Microservices",
-  "Containerization",
-  "Mobile Dev",
-  "Networking",
-  "Open Source",
+  "REST APIs",
+  "Postman",
+  "MySQL",
+  "Agile Development"
+
 ];
 
 export default function TickerStrip({ reverse = false }) {
@@ -38,7 +37,7 @@ export default function TickerStrip({ reverse = false }) {
             key={i}
             className="inline-flex items-center gap-3 px-6 text-xs font-mono text-foreground/40 uppercase tracking-widest"
           >
-            <span className="text-accent text-base leading-none">//</span>
+            <span className="text-accent text-base leading-none">{`//`}</span>
             {item}
           </span>
         ))}

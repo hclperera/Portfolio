@@ -57,20 +57,20 @@ const ICONS_MAP = {
 
 export default function About() {
   const [aboutTexts, setAboutTexts] = useState([
-    "I am an Information Technology undergraduate with a strong interest in DevOps, cloud infrastructure, automation, and reliable software delivery.",
+    "I am an Information Technology undergraduate with a strong interest in DevOps, cloud infrastructure and automation",
     "My expertise spans across mobile application development, backend systems, and containerization. I enjoy building seamless digital experiences and deploying them reliably using modern cloud practices.",
     "Eager to learn new technologies and apply engineering practices across cloud, backend, and mobile environments."
   ]);
   const [skillCategories, setSkillCategories] = useState(SKILL_CATEGORIES);
 
   useEffect(() => {
-    supabase.from("profile").select("about_texts").eq("id", 1).single().then(({data}) => {
+    supabase.from("profile").select("about_texts").eq("id", 1).single().then(({ data }) => {
       if (data?.about_texts?.length > 0) {
         setAboutTexts(data.about_texts);
       }
     });
 
-    supabase.from("skills").select("*").order("id", { ascending: true }).then(({data}) => {
+    supabase.from("skills").select("*").order("id", { ascending: true }).then(({ data }) => {
       if (data?.length > 0) {
         setSkillCategories(data.map(d => ({
           ...d,
@@ -84,7 +84,7 @@ export default function About() {
   return (
     <section id="about" className="py-24 relative border-t border-border/50">
       <div className="max-w-6xl mx-auto px-4">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -95,7 +95,7 @@ export default function About() {
             <span className="text-accent font-mono">01.</span> About Me
           </h2>
           <div className="w-20 h-1 bg-accent mb-8"></div>
-          
+
           <div className="grid md:grid-cols-2 gap-12">
             <div className="text-foreground/80 space-y-4 text-lg leading-relaxed">
               {aboutTexts.map((text, idx) => (
@@ -104,7 +104,7 @@ export default function About() {
                 </p>
               ))}
             </div>
-            
+
             <div className="rounded-lg border border-border bg-[#050505] overflow-hidden shadow-2xl h-fit">
               <div className="flex justify-between items-center px-4 py-2 bg-[#2d2d2d] border-b border-[#1a1a1a]">
                 <span className="text-xs font-mono text-foreground/70">chanduka@linux: ~</span>
@@ -117,13 +117,13 @@ export default function About() {
               <div className="p-6 font-mono text-sm sm:text-base">
                 <p className="text-accent mb-2">$ whoami</p>
                 <p className="text-foreground/80 mb-4">chanduka_lakshan</p>
-                
+
                 <p className="text-accent mb-2">$ cat skills.json</p>
                 <div className="text-foreground/80 mb-4 pl-4 border-l-2 border-border">
                   <p>&#123;</p>
-                  <p className="pl-4">"devops": ["Linux", "Docker", "Azure", "Git"],</p>
-                  <p className="pl-4">"mobile": ["Flutter", "Android Studio", "Java"],</p>
-                  <p className="pl-4">"backend": ["Python", "FastAPI", "SQL"]</p>
+                  <p className="pl-4">&quot;devops&quot;: [&quot;Linux&quot;, &quot;Docker&quot;, &quot;Azure&quot;, &quot;Git&quot;],</p>
+                  <p className="pl-4">&quot;mobile&quot;: [&quot;Flutter&quot;, &quot;Android Studio&quot;, &quot;Java&quot;],</p>
+                  <p className="pl-4">&quot;backend&quot;: [&quot;Python&quot;, &quot;FastAPI&quot;, &quot;SQL&quot;]</p>
                   <p>&#125;</p>
                 </div>
 
@@ -166,7 +166,7 @@ export default function About() {
           </div>
         </motion.div>
 
-        <motion.div 
+        <motion.div
           className="mt-20 overflow-hidden"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
